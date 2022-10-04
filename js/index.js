@@ -51,10 +51,10 @@ function Materias(tipo){
         if(children > tipo.maxChilds){
             let isLastChildrenEmpty = (titulo[titulo.length -1].innerHTML == "" && texto[texto.length-1].children[0].innerHTML == '');
 
-            if(isLastChildrenEmpty || modalOpen){
+            if(isLastChildrenEmpty || modalopen){
                 container.lastChild.remove();
             }else{
-                new ConfirmModal(tipo.msg, tipo.funcaoRemove);
+                addConfirm(tipo);
             }
         }else{
             console.log('não foi possível remover a matéria pois não há matéria a ser removida');
