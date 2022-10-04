@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+	
+	<style>
+		body{
+            background-color: #f6f4f3;
+
+            display: flex;
+			flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            min-height: 98vh;
+        }
+		
+		body > div{
+			margin: 80px;
+		}
+	</style>
+
+    <style>
+        .prompt{
+            background-color: #f6f4f3;
+            color: #0a375c;
+			box-shadow: 0 0 15px rgba(0,0,0,.3);
+
+            width: 400px;
+            height: 175px;
+
+            padding: 25px;
+
+            border: none;
+            border-radius: 5px;
+
+            font-family: 'Roboto', sans-serif;
+
+            display: flex;
+            flex-direction: column;
+			justify-content: flex-start;
+        }
+
+        .prompt h3{
+            margin-top: 0;
+            margin-bottom: 3px;
+        }
+
+        .prompt p{
+            margin-top: 0;
+            font-size: 11pt;
+        }
+
+        .prompt input{
+            border: 2px solid #3183af;
+			border-radius: 5px;
+			
+            background-color: transparent;
+
+            font-size: 12pt;
+            line-height: 20pt;
+			
+			padding: 5px 10px;
+			width: calc(100% - 25px);
+        }
+
+        .prompt .container{
+            align-self: flex-end;
+			margin-top: auto;
+        }
+
+        .container > *{
+            margin: 0 5px;
+        }
+		
+		.prompt button:first-of-type{
+			background-color: #3183af;
+			color: #f6f4f3;
+		}
+		
+		.prompt button:focus{
+			border: 2px solid #f6f4f3;
+			outline: 2px solid #3183af;
+		}
+		
+		.prompt button:first-of-type:hover{
+			background-color: #0a375c;	
+		}
+		
+		.prompt button:hover{
+			background-color: #e4e0dd;	
+		}
+
+        .prompt button{
+            background-color: #f6f4f3;
+            border: none;
+			border-radius: 3px;
+            padding: 10px 20px;
+
+            font-weight: bold;
+            text-transform: uppercase;
+
+            cursor: pointer;
+        }
+    </style>
+	
+	<style>
+		.text-editor{
+			background-color: #f6f4f3;
+			height: 30px;
+			padding: 5px;
+			
+			border-radius: 3px;
+				
+			box-shadow: 0 0 15px rgba(0,0,0, .3);
+			
+			display: flex;
+		}
+		
+		.text-editor .button{
+			margin: 0 4px;
+			
+			width: 30px;
+			height: 100%;
+			transition: .3s;
+			
+			cursor: pointer;
+		}
+		
+		.text-editor .button:hover{
+			background-color: #e8e3e0;
+		}
+		
+		.text-editor .button img{
+			max-height: calc(100% - 10px);
+			padding: 5px;
+		}
+		
+		.text-editor .vr{
+			width: 1px;
+			
+			border: none;
+			background-color: #D3CAC5;
+			margin: 2px 7px;
+		}
+	</style>
+	
+	<style>
+		.alert{
+            width: 400px;
+            height: 120px;
+		}
+		
+		.alert p{
+			margin-right: 100px;
+		}
+		
+		.alert h3{
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+	</style>
+	
+	<style>
+		.erro input{
+			border: 2px solid #ff2c48;
+		}
+		
+		.erro .msg{
+			font-size:13px;
+			text-align: right;
+			color: #ff2c48;
+			margin-top: 5px;
+		}
+	</style>
+	
+	<style>
+		.menu-btns{
+			min-width: 200px;
+			border-radius: 4px;
+
+			background-color: #0a375c;
+
+			overflow: hidden;
+
+			display: flex;
+			flex-direction: column;
+
+			font-family: sans-serif;
+			
+			box-shadow: 0 0 10px rgba(0,0,0,.3);
+		}
+		
+		.btn{
+			background-color: #0a375c;
+			color: #f6f4f3;
+			
+			height: 50px;
+			
+			padding: 10px 35px 10px 25px;
+			font-size: 11pt;
+			
+			font-weight: 700;
+			
+			display: flex;
+			align-items: center;
+			cursor: pointer;
+			
+			transition: .3s;
+		}
+		
+		.btn svg, .btn img{
+			margin-right: 15px;
+		}
+
+		.btn:hover{
+			background-color: #256182;
+		}
+		
+		.tab{
+			padding-left: 40px;
+		}
+		
+		.greyed{
+			background-color: #8c8c8c;
+			cursor: default;
+		}
+		
+		.greyed:hover{
+			background-color: #8c8c8c;
+		}
+	</style>
+</head>
+<body>
+	<div class="menu-btns">
+		<div class="btn">
+			<img src="img/add_icon.svg" width="24">
+			Adicionar Matéria
+		</div>
+		<div class="btn greyed">
+			<img src="img/remove_icon.svg" width="24">
+			Remover Última Matéria
+		</div>
+		<div class="btn">
+			<img src="img/add_icon.svg" width="24">
+			Adicionar Outra Matéria
+		</div>
+		<div class="btn greyed">
+			<img src="img/remove_icon.svg" width="24">
+			Remover Última Outra Matéria
+		</div>
+		<div class="btn greyed">
+			<img src="img/link_icon.svg" width="24">
+			Inserir Link
+		</div>
+		<div class="btn">
+			<img src="img/html_icon.svg" width="24">
+			Exportar HTML
+		</div>
+	</div>
+	
+    <div class="prompt">
+        <div>
+            <h3>Link</h3>
+            <p>Adicione o link</p>
+        </div>
+        <div>
+            <input type="text">
+        </div>
+        <div class="container">
+            <button>Enviar</button>
+            <button>Cancelar</button>
+        </div>
+    </div>
+	
+	<div class="prompt erro">
+        <div>
+            <h3>Link</h3>
+            <p>Adicione o link</p>
+        </div>
+        <div>
+            <input type="text">
+			<p class="msg">Link Inválido, tente novamente</p>
+        </div>
+        <div class="container">
+            <button>Enviar</button>
+            <button>Cancelar</button>
+        </div>
+    </div>
+	
+	<div class="prompt alert">
+        <div>
+            <h3>Confirmação</h3>
+            <p>Gerar o HTML é uma ação irreversível, tem certeza de que deseja continuar?</p>
+        </div>
+        <div class="container">
+            <button id="ok-btn">OK</button>
+            <button>Cancelar</button>
+        </div>
+    </div>
+	
+	<div class="text-editor">
+		<div class="button">
+			<img src="img/Assets/return-icon.png" alt="">
+		</div>
+				<div class="button">
+			<img src="img/Assets/return-icon.png" alt="">
+		</div>
+		
+		<div class="vr"></div>
+		
+		<div class="button">
+			<img src="img/Assets/return-icon.png" alt="">
+		</div>
+		<div class="button">
+			<img src="img/Assets/return-icon.png" alt="">
+		</div>
+		<div class="button">
+			<img src="img/Assets/return-icon.png" alt="">
+		</div>
+		
+		<div class="vr"></div>
+		
+		<div class="button">
+			<img src="img/Assets/return-icon.png" alt="">
+		</div>
+		
+		<div class="vr"></div>
+		
+		<div class="button">
+			<img src="img/Assets/return-icon.png" alt="">
+		</div>
+		<div class="button">
+			<img src="img/Assets/return-icon.png" alt="">
+		</div>
+		<div class="button">
+			<img src="img/Assets/return-icon.png" alt="">
+		</div>
+		
+	</div>
+</body>
+</html>
