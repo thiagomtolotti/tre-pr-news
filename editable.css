@@ -271,7 +271,7 @@ label{
 	cursor: pointer;
 	position: absolute;
 
-	background-image: url('./img-testes/close-icon.svg');
+	background-image: url('./img/close-icon.svg');
 }
 
 /*Animação dos Flash Messages*/
