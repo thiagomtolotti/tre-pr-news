@@ -1,3 +1,4 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br">
 <head>
@@ -8,10 +9,7 @@
     <title>Newsletter TRE-PR</title>
 
     <style>
-        body{
-            margin: 0;
-            background-color: #cccccc;
-        }
+
         table {
 			border-spacing: 0;
         }
@@ -101,14 +99,20 @@
 </head>
 
 <body>
+    <!-- Flash Messages -->
+    <!-- Esse container 'extra' é necessário pra permitir o 'overflow' de notificações -->
+    <div class="container-lvl2-flash-message">
+        <div class="flash-message-container"></div>
+    </div>
+
     <center class="wrapper final">
         <table class="main" width="100%">
             <!-- CAPA -->
             <tr>
                 <td>
-					<a href="https://www.tre-pr.jus.br/imprensa" target="_blank" style="display: inline-block; margin: 0 auto 50px">
-                    	<img src="https://thiagotolotti.com/newsletter/img/Banner.jpg" alt="" width="580" style="max-width:100%;">
-					</a>
+                    <a href="https://www.tre-pr.jus.br/imprensa" target="_blank" style="display: inline-block; margin: 0 auto 50px">
+                        <img src="https://thiagotolotti.com/newsletter/img/Banner.jpg" alt="" width="580" style="max-width:100%;">
+                    </a>
                 </td>
             </tr>
 
@@ -184,18 +188,18 @@
                         <td style="padding: 20px 20px 0;">
                             <div class="outra-materia">
                                 <p class="titulo-materia outro" contenteditable placeholder="Título da Matéria"></p>
-								<div class="texto-materia" contenteditable="">
-                                	<p placeholder="Gravata da matéria"></p>
-								</div>
+                                <div class="texto-materia" contenteditable="">
+                                    <p placeholder="Gravata da matéria"></p>
+                                </div>
                             </div>
                         </td>
                     </tr>
                 </table>
             </td>
             </tr>
-			
-			<!-- 'NAS REDES SOCIAIS' -->
-		  	<tr>
+            
+            <!-- 'NAS REDES SOCIAIS' -->
+                <tr>
                 <td>
                     <table width="100%" style="max-width: 520px; margin: 30px auto 0;">
                         <tr>
@@ -207,25 +211,25 @@
                     </table>
                 </td>
             </tr>
-			
-			<tr>
+            
+            <tr>
             <td style="padding: 5px 0 20px">
                 <table width="100%" style="max-width: 480px; margin: 0 auto; padding: 0 20px">
                     <tr>
                         <td>
-							<p class="texto-materia" contenteditable placeholder="Legenda do post das redes sociais (opcional)"></p>
+                            <p class="texto-materia" contenteditable placeholder="Legenda do post das redes sociais (opcional)"></p>
                         </td>
                     </tr>
                 </table>
             </td>
             </tr>
-			
-			<tr>
+            
+            <tr>
                 <td>
                     <table width="100%" style="max-width:440px; margin: 0 auto">
                         <tr>
                             <td style="padding: 0 20px;">
-								<img src="img/placeholder-redes.png" alt="" width="540" style="max-width:100%; margin: 0 auto 40px;" id="imagem-redes" onClick="addModal(imgRedes)" tabindex = "0">
+                                <img src="img/placeholder-redes.png" alt="" width="540" style="max-width:100%; margin: 0 auto 40px;" id="imagem-redes" onClick="addModal(imgRedes)" tabindex = "0">
                             </td>
                         </tr>
                     </table>
@@ -242,7 +246,7 @@
                                     <a href="https://instagram.com/treparana" target="_blank" class="icon_redes"><img src="https://thiagotolotti.com/newsletter/img/Instagram.png" alt="Ícone do Instagram com link para a rede social do TRE-PR" width="30"></a>
                                     <a href="https://pt-br.facebook.com/treparana" target="_blank" class="icon_redes" ><img src="https://thiagotolotti.com/newsletter/img/Facebook.png" alt="Ícone do Facebook com link para a rede social do TRE-PR" width="30"></a>
                                     <a href="https://www.tiktok.com/@tre_pr" target="_blank" class="icon_redes" ><img src="https://thiagotolotti.com/newsletter/img/Tiktok.png" alt="Ícone do Tiktok com link para a rede social do TRE-PR" width="30"></a>
-									<a href="https://www.tre-pr.jus.br" target="_blank" class="icon_redes" ><img src="https://thiagotolotti.com/newsletter/img/Website.png" alt="Ícone com link para o website do TRE-PR" width="30"></a>
+                                    <a href="https://www.tre-pr.jus.br" target="_blank" class="icon_redes" ><img src="https://thiagotolotti.com/newsletter/img/Website.png" alt="Ícone com link para o website do TRE-PR" width="30"></a>
                                 </td>
                             </tr>
 
@@ -262,31 +266,31 @@
 
     <!-- MENU DOS BOTÕES -->
     <div class="menu-btns">
-		<button class="btn" onClick="materiasMain.addMateria()">
-			<img src="img/add_icon.svg" width="24" alt="">
-			Adicionar Matéria
-		</button>
-		<button class="btn greyed" onClick="materiasMain.removeMateria()" id="remove-materia">
-			<img src="img/remove_icon.svg" width="24" alt="">
-			Remover Última matéria
-		</button>
-		<button class="btn" onClick="materiasOutra.addMateria()">
-			<img src="img/add_icon.svg" width="24" alt="">
-			Adicionar 'Outras matérias'
-		</button>
-		<button class="btn greyed" onClick="materiasOutra.removeMateria()" id="remove-outra-materia">
-			<img src="img/remove_icon.svg" width="24" alt="">
-			Remover Última<br>'Outras Matérias'
-		</button>
-		<button class="btn greyed" onClick="" id="link">
-			<img src="img/link_icon.svg" width="24" alt="">
-			Inserir Link
-		</button>
-		<button class="btn" onClick="addConfirm(HTML)">
-			<img src="img/html_icon.svg" width="24" alt="">
-			Exportar HTML
-		</button>
-	</div>
+        <button class="btn" onClick="materiasMain.addMateria()">
+            <img src="img/add_icon.svg" width="24" alt="">
+            Adicionar Matéria
+        </button>
+        <button class="btn greyed" onClick="materiasMain.removeMateria()" id="remove-materia">
+            <img src="img/remove_icon.svg" width="24" alt="">
+            Remover Última matéria
+        </button>
+        <button class="btn" onClick="materiasOutra.addMateria()">
+            <img src="img/add_icon.svg" width="24" alt="">
+            Adicionar 'Outras matérias'
+        </button>
+        <button class="btn greyed" onClick="materiasOutra.removeMateria()" id="remove-outra-materia">
+            <img src="img/remove_icon.svg" width="24" alt="">
+            Remover Última<br>'Outras Matérias'
+        </button>
+        <button class="btn greyed" onClick="" id="link">
+            <img src="img/link_icon.svg" width="24" alt="">
+            Inserir Link
+        </button>
+        <button class="btn" onClick="addConfirm(HTML)">
+            <img src="img/html_icon.svg" width="24" alt="">
+            Exportar HTML
+        </button>
+    </div>
 
     <script defer>
 		document.getElementById('link').onclick = function(e){
@@ -312,7 +316,6 @@
 			}
 		});
 		
-
     </script>
 </body>
 

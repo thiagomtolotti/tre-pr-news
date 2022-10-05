@@ -16,6 +16,9 @@
             justify-content: center;
 
             min-height: 98vh;
+			
+            font-family: 'Roboto', sans-serif;
+			color: #0a375c;
         }
 		
 		body > div{
@@ -37,7 +40,6 @@
             border: none;
             border-radius: 5px;
 
-            font-family: 'Roboto', sans-serif;
 
             display: flex;
             flex-direction: column;
@@ -233,6 +235,81 @@
 			background-color: #8c8c8c;
 		}
 	</style>
+
+	<!-- Flash-messages -->
+	<style>
+		.flash-message{
+			background-color: #f6f4f3;
+			box-shadow: 0 0 15px rgba(0,0,0, .15);
+
+			border-radius: 5px;
+
+			display: flex;
+			overflow: hidden;
+			position: relative;
+
+			width: 500px;
+			height: 110px;
+		}
+		.flash-message .barra-lateral{
+			width: 10px;
+			height: 1000px;
+		}
+		.flash-message .icon{
+			width: 40px;
+			height: 40px;
+			margin: auto 15px;
+
+			background-repeat: no-repeat;
+			background-position: center center;
+		}
+		.flash-message .conteudo{
+			padding-right: 20px;
+			margin: 15px 0;
+
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+		}
+		.flash-message .conteudo p, .flash-message .conteudo h4{
+			margin: 5px;
+			line-height: 1.25;
+		}
+		.flash-message .close-icon{
+			width: 25px;
+			height: 25px;
+			right: 15px;
+			top: 10px;
+
+			cursor: pointer;
+			position: absolute;
+
+			background-image: url('./img-testes/close-icon.svg');
+		}
+
+		/* Diferentes tipos de mensagens */
+		.flash-message.sucesso .barra-lateral{
+			background-color: #01d451;
+		}
+		.flash-message.sucesso .icon{
+			background-image: url("./img-testes/sucesso-icon.svg");
+		}
+
+		.flash-message.erro .barra-lateral{
+			background-color: #ff2c48;
+		}
+		.flash-message.erro .icon{
+			background-image: url("./img-testes/erro-icon.svg");
+		}
+		
+		.flash-message.aviso .barra-lateral{
+			background-color: #ffbb33;
+		}
+		.flash-message.aviso .icon{
+			background-image: url("./img-testes/aviso-icon.svg");
+		}
+
+	</style>
 </head>
 <body>
 	<div class="menu-btns">
@@ -339,7 +416,34 @@
 		<div class="button">
 			<img src="img/Assets/return-icon.png" alt="">
 		</div>
-		
+	</div>
+
+	<div class="flash-message sucesso">
+		<div class="barra-lateral"></div>
+		<div class="icon"></div>
+		<div class="conteudo">
+			<h4>Email de Confirmação</h4>
+			<p>Não é possível exportar o convite sem um <strong>email de confirmação.</strong></p>
+		</div>
+		<div class="close-icon"></div>
+	</div>
+	<div class="flash-message erro">
+		<div class="barra-lateral"></div>
+		<div class="icon"></div>
+		<div class="conteudo">
+			<h4>Email de Confirmação</h4>
+			<p>Não é possível exportar o convite sem um <strong>email de confirmação.</strong></p>
+		</div>
+		<div class="close-icon"></div>
+	</div>
+	<div class="flash-message aviso">
+		<div class="barra-lateral"></div>
+		<div class="icon"></div>
+		<div class="conteudo">
+			<h4>Email de Confirmação</h4>
+			<p>Não é possível exportar o convite sem um <strong>email de confirmação.</strong></p>
+		</div>
+		<div class="close-icon"></div>
 	</div>
 </body>
 </html>

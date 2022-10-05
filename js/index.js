@@ -42,6 +42,8 @@ function Materias(tipo){
     this.addMateria = function(){
         container.insertAdjacentHTML('beforeend', tipo.html);
         btnRemove.classList.remove('greyed');
+
+        new FlashMessage(flashMessages.addMateria)
     };
     this.removeMateria = function(){
         let children = container.childElementCount;
@@ -51,12 +53,14 @@ function Materias(tipo){
         if(children > tipo.maxChilds){
             let isLastChildrenEmpty = (titulo[titulo.length -1].innerHTML == "" && texto[texto.length-1].children[0].innerHTML == '');
 
-            if(isLastChildrenEmpty || modalopen){
+            if(isLastChildrenEmpty || modalopen){ //se a matéria a ser removida está vazia OU o modal está aberto (e o usuário confirmou que deseja mesmo remover)
                 container.lastChild.remove();
+                new FlashMessage(flashMessages.removeMateria)
             }else{
                 addConfirm(tipo);
             }
         }else{
+            new FlashMessage(flashMessages.notRemoveMateria)
             console.log('não foi possível remover a matéria pois não há matéria a ser removida');
         }
 		
@@ -128,6 +132,9 @@ function geraHTML(){
 
     //coloca o HTML no clipboard
     navigator.clipboard.writeText(HTML_export);
+
+    new FlashMessage(flashMessages.Export)
+    new FlashMessage(flashMessages.HTML)
 }
 
 //identifica se tem algum texto selecionado

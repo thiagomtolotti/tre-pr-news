@@ -3,24 +3,6 @@
     cursor: text;
 }
 
-.menu-btns{
-	min-width: 200px;
-	border-radius: 5px;
-
-	background-color: #0a375c;
-
-	overflow: hidden;
-
-	display: flex;
-	flex-direction: column;
-
-	font-family: sans-serif;
-	
-    position: fixed;
-	left: calc(50% + 350px);
-	bottom: 50px;
-}
-
 #footer, .menu-btns{
 	-webkit-user-select: none; /* Safari */        
 	-moz-user-select: none; /* Firefox */
@@ -215,4 +197,132 @@
 label{
 	display: inline-block;
 	margin-bottom: 40px;
+}
+
+/* Flash-messages */
+.container-lvl2-flash-message{
+	position: fixed;
+	top: 0;
+
+	margin: 30px;
+
+	height: -webkit-fill-available;
+	height: calc(100vh - 60px);
+
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+}
+
+.flash-message{
+	background-color: #f6f4f3;
+	box-shadow: 0 0 15px rgba(0,0,0, .15);
+
+	border-radius: 5px;
+
+	display: flex;
+	overflow: hidden;
+	position: relative;
+
+	font-family: 'Roboto', sans-serif;
+	color: #062137;
+
+	max-width: 500px;
+	width: 40vw;
+	height: 110px;
+	margin: 15px 0;
+
+	/*Animação*/
+	opacity: 0;
+	transform: translateY(20px);
+
+	transition: 0.4s ease-out;
+}
+.flash-message .barra-lateral{
+	width: 10px;
+	height: 1000px;
+}
+.flash-message .icon{
+	width: 40px;
+	height: 40px;
+	margin: auto 15px;
+
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+.flash-message .conteudo{
+	padding-right: 20px;
+	margin: 15px 0;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.flash-message .conteudo p, .flash-message .conteudo h4{
+	margin: 5px;
+	line-height: 1.25;
+}
+.flash-message .close-icon{
+	width: 25px;
+	height: 25px;
+	right: 15px;
+	top: 10px;
+
+	cursor: pointer;
+	position: absolute;
+
+	background-image: url('./img-testes/close-icon.svg');
+}
+
+/*Animação dos Flash Messages*/
+.flash-message.show{
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+/* Diferentes tipos de mensagens */
+.flash-message.sucesso .barra-lateral{
+	background-color: #01d451;
+}
+.flash-message.sucesso .icon{
+	background-image: url("./img/sucesso-icon.svg");
+}
+
+.flash-message.erro .barra-lateral{
+	background-color: #ff2c48;
+}
+.flash-message.erro .icon{
+	background-image: url("./img/erro-icon.svg");
+}
+
+.flash-message.aviso .barra-lateral{
+	background-color: #ffbb33;
+}
+.flash-message.aviso .icon{
+	background-image: url("./img/aviso-icon.svg");
+}
+
+/* Containers do editor */
+body{
+	background-color: #ccc;
+
+	margin: 0;
+}
+
+.menu-btns{
+	min-width: 200px;
+	border-radius: 5px;
+
+	background-color: #0a375c;
+
+	overflow: hidden;
+
+	display: flex;
+	flex-direction: column;
+
+	font-family: sans-serif;
+	
+    position: fixed;
+	left: calc(50% + 350px);
+	bottom: 50px;
 }
