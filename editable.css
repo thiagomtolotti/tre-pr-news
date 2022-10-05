@@ -326,3 +326,11 @@ body{
 	left: calc(50% + 350px);
 	bottom: 50px;
 }
+
+/* TESTE */
+.outra-materia-container{
+	cursor: pointer;
+}
+.outra-materia-container:hover{
+	background-color: #dcd5d0;
+}
