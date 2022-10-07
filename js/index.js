@@ -1,92 +1,71 @@
-const main = {
-    containerId: 'container-materias-main',
-    html: `<tr> \
-    <td style="padding: 20px 20px 0;"> \
-        <p class="titulo-materia" contenteditable placeholder="Título da matéria"></p> \
-        <hr> \
-        <div class="texto-materia" contenteditable> \
-            <p placeholder="Texto da matéria"></p> \
-        </div> \
-    </td> \
-    </tr>`,
-    btnRemoveId: 'remove-materia',
-    maxChilds: 0,
-    msg: "Há conteúdo na matéria <strong>principal</strong> sendo excluída, deseja continuar mesmo assim?",
-    funcaoRemove: `materiasMain.removeMateria()`
-}
 
-const outra = {
-    containerId: 'container-materia-outras',
-    html: `<tr> \
-    <td style="padding: 20px 20px 0;"> \
-        <div class="outra-materia"> \
-            <p class="titulo-materia outro" contenteditable placeholder="Título da Matéria"></p> \
-            <div class="texto-materia" contenteditable=""> \
-				<p placeholder="Gravata da matéria"></p> \
-			</div> \
-        </div> \
-    </td> \
-    </tr>`,
-    btnRemoveId: 'remove-outra-materia',
-    maxChilds: 1,
-    msg: "Há conteúdo na matéria <strong>secundária</strong> sendo excluída, deseja continuar mesmo assim?",
-    funcaoRemove: `materiasOutra.removeMateria()`
-}
 
-//constructor
-function Materias(tipo){
-    let btnRemove = document.getElementById(tipo.btnRemoveId);
-    let container = document.querySelector(`#${tipo.containerId}`);
-	
-	//define os métodos do objeto
-    this.addMateria = function(){
-        container.insertAdjacentHTML('beforeend', tipo.html);
-        btnRemove.classList.remove('greyed');
+// // Flash-Messages
+// //objeto JSON com os 'tipos' de modal
+// let flash_messages_JSON = '{ \
+//     "HTML": { \
+//        "tipo": "aviso", \
+//        "titulo" : "Edição bloqueada", \
+//        "texto": "A partir desse momento não é mais posível editar a newsletter" \
+//     }, \
+//     "Export": { \
+//        "tipo" : "sucesso", \
+//        "titulo" : "Conteúdo Exportado", \
+//        "texto" : "O conteúdo da newsletter foi exportado, basta colá-lo no seu provedor de email"\
+//     }, \
+//     "removeMateria": { \
+//        "tipo" : "sucesso", \
+//        "titulo" : "Matéria removida", \
+//        "texto" : "Matéria removida com sucesso"\
+//     }, \
+//     "notRemoveMateria": { \
+//        "tipo" : "erro", \
+//        "titulo" : "Não é possível remover a matéria", \
+//        "texto" : "Não há matérias a serem removidas"\
+//     }, \
+//     "addMateria": { \
+//        "tipo" : "sucesso", \
+//        "titulo" : "Matéria Adicionada", \
+//        "texto" : "Matéria adicionada com sucesso"\
+//     } \
+//    }'
+   
+// let flashMessages = JSON.parse(flash_messages_JSON)
 
-        new FlashMessage(flashMessages.addMateria)
-    };
-    this.removeMateria = function(){
-        let children = container.childElementCount;
-        let titulo = document.querySelectorAll(`#${tipo.containerId} .titulo-materia`);
-        let texto = document.querySelectorAll(`#${tipo.containerId} .texto-materia`);
+// let elementToRemove
+// function deleteMateria(el){
+//     elementToRemove = el.parentNode
+//     let titulo = elementToRemove.querySelector('.titulo-materia')
+//     let texto = elementToRemove.querySelector('.texto-materia')
+//     let tipo
+    
+//     if(elementToRemove.classList.contains("outra-materia-container")){
+//         tipo = outra
+//     }
 
-        if(children > tipo.maxChilds){
-            let isLastChildrenEmpty = (titulo[titulo.length -1].innerHTML == "" && texto[texto.length-1].children[0].innerHTML == '');
+//     let isLastChildrenEmpty = (titulo.innerHTML == "" && texto.children[0].innerHTML == '');
 
-            if(isLastChildrenEmpty || modalopen){ //se a matéria a ser removida está vazia OU o modal está aberto (e o usuário confirmou que deseja mesmo remover)
-                container.lastChild.remove();
-                new FlashMessage(flashMessages.removeMateria)
-            }else{
-                addConfirm(tipo);
-            }
-        }else{
-            new FlashMessage(flashMessages.notRemoveMateria)
-            console.log('não foi possível remover a matéria pois não há matéria a ser removida');
-        }
-		
-		children = container.childElementCount;
+//     if(isLastChildrenEmpty || modalopen){ //se a matéria a ser removida está vazia OU o modal está aberto (e o usuário confirmou que deseja mesmo remover)
+//         elementToRemove.remove();
+//         new FlashMessage(flashMessages.removeMateria)
+//     }else{
+//         addConfirm(tipo, 'callbackAlert', 'deletedMateria');
+//     }
+// }
 
-        (children > tipo.maxChilds) ? btnRemove.classList.remove('greyed') : btnRemove.classList.add('greyed'); 
-    };
-	
-	//métodos privados
-	
-	
-	//define as propriedades privadas do objeto
-	Object.defineProperty(this, "btnRemove",{
-		get: function(){
-			return btnRemove;
-		}
-	});
-	Object.defineProperty(this, "container", {
-		get: function(){
-			return container
-		}
-	})
-}
+// function callbackAlert(callback){
+//     console.log(elementToRemove)
+//     if(alertValue){
+//         elementToRemove.remove()
 
-const materiasMain = new Materias(main);
-const materiasOutra = new Materias(outra);
+//         callback();
+//     }
+// }
+
+// function deletedMateria(){
+//     console.log('excluiu')
+//     new FlashMessage(flashMessages.removeMateria)
+// }
 
 function geraHTML(){
     //remove o atributo 'contenteditable' dos elementos
@@ -164,7 +143,6 @@ function openLink(){
         document.getElementById("link").classList.add("greyed");
 	}
 }
-
 
 //'Plain-paste'; não aceita rich texts
 const editorEle = document.querySelector('.final');

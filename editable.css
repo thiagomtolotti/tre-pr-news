@@ -237,6 +237,8 @@ label{
 	transform: translateY(20px);
 
 	transition: 0.4s ease-out;
+
+	z-index: 99;
 }
 .flash-message .barra-lateral{
 	width: 10px;
@@ -328,9 +330,54 @@ body{
 }
 
 /* TESTE */
-.outra-materia-container{
+.outra-materia-container, .main-materia-container{
 	cursor: pointer;
+	
+	border-radius: 20px;
+	overflow: hidden;
 }
-.outra-materia-container:hover{
+.outra-materia-container:hover, .main-materia-container:hover{
 	background-color: #dcd5d0;
+}
+
+/* Botão adicionar matéria */
+.add-btn{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+	cursor: pointer;
+
+	margin: 15px 0;
+}
+.add-btn div{
+	width: 40px;
+	height: 40px;
+	border-radius: 25px;
+
+	background-color: #0a375c;
+	color: #f6f4f3;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	text-align: center;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+/* Remover outra materia */
+.remove-materia{
+	position: relative;
+}
+.remove-btn{
+	position: absolute;
+	top: 15px;
+	right: 15px;
+
+	width: 25px;
+	height: 25px;
+
+	background-image: url('./img/close-icon.svg');
 }

@@ -93,6 +93,7 @@
 
     <!-- ELEMENTOS PARA O EDITOR -->
     <link rel="stylesheet" href="editable.css">
+    <script src="js/materias.js" defer></script>
     <script src="js/index.js" defer></script>
 	<script src="js/modal.js" defer></script>
 	<script src="js/smart_toolbox.js" defer></script>
@@ -100,12 +101,6 @@
 </head>
 
 <body>
-    <!-- Flash Messages -->
-    <!-- Esse container 'extra' é necessário pra permitir o 'overflow' de notificações -->
-    <div class="container-lvl2-flash-message">
-        <div class="flash-message-container"></div>
-    </div>
-
     <center class="wrapper final">
         <table class="main" width="100%">
             <!-- CAPA -->
@@ -162,8 +157,10 @@
             <!-- TÍTULO E CONTEÚDO DA MATÉRIA SECUNDÁRIA -->
             <tr>
                 <td style="padding: 5px 0 20px">
-                    <table width="100%" style="max-width: 520px; margin: 0 auto;" id="container-materias-main">
+                    <table width="100%" style="max-width: 520px; margin: 0 auto;" id="container-main">
                     </table>
+                    
+                    <tr id="add-main" class="add-btn" onClick="new MateriaMain()"><td><div>+</div></td></tr>
                 </td>
             </tr>
 
@@ -184,38 +181,9 @@
             <!-- CONTEÚDO 'OUTRAS MATÉRIAS' -->
             <tr>
             <td style="padding: 5px 0 20px">
-                <table width="100%" style="max-width: 480px; margin: 0 auto;" id="container-materia-outras">
-                    <tr class="outra-materia-container">
-                        <td style="padding: 20px 20px 0;">
-                            <div class="outra-materia">
-                                <p class="titulo-materia outro" contenteditable placeholder="Título da Matéria">AAA</p>
-                                <div class="texto-materia" contenteditable="">
-                                    <p placeholder="Gravata da matéria"></p>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="outra-materia-container">
-                        <td style="padding: 20px 20px 0;">
-                            <div class="outra-materia">
-                                <p class="titulo-materia outro" contenteditable placeholder="Título da Matéria">BBB</p>
-                                <div class="texto-materia" contenteditable="">
-                                    <p placeholder="Gravata da matéria"></p>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="outra-materia-container">
-                        <td style="padding: 20px 20px 0;">
-                            <div class="outra-materia">
-                                <p class="titulo-materia outro" contenteditable placeholder="Título da Matéria">CCC</p>
-                                <div class="texto-materia" contenteditable="">
-                                    <p placeholder="Gravata da matéria"></p>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
+                <table width="100%" style="max-width: 480px; margin: 0 auto;" id="container-outras">
                 </table>
+                <tr id="add-outra" class="add-btn" onClick="new OutraMateria()"><td><div>+</div></td></tr>
             </td>
             </tr>
             
@@ -286,31 +254,22 @@
     </center>
 
     <!-- MENU DOS BOTÕES -->
+    <!-- TODO: Retirar -->
     <div class="menu-btns">
-        <button class="btn" onClick="materiasMain.addMateria()">
-            <img src="img/add_icon.svg" width="24" alt="">
-            Adicionar Matéria
-        </button>
-        <button class="btn greyed" onClick="materiasMain.removeMateria()" id="remove-materia">
-            <img src="img/remove_icon.svg" width="24" alt="">
-            Remover Última matéria
-        </button>
-        <button class="btn" onClick="materiasOutra.addMateria()">
-            <img src="img/add_icon.svg" width="24" alt="">
-            Adicionar 'Outras matérias'
-        </button>
-        <button class="btn greyed" onClick="materiasOutra.removeMateria()" id="remove-outra-materia">
-            <img src="img/remove_icon.svg" width="24" alt="">
-            Remover Última<br>'Outras Matérias'
-        </button>
         <button class="btn greyed" onClick="" id="link">
             <img src="img/link_icon.svg" width="24" alt="">
             Inserir Link
         </button>
-        <button class="btn" onClick="addConfirm(HTML)">
+        <button class="btn" onClick="addConfirm(HTML, geraHTML())">
             <img src="img/html_icon.svg" width="24" alt="">
             Exportar HTML
         </button>
+    </div>
+
+    <!-- Flash Messages -->
+    <!-- Esse container 'extra' é necessário pra permitir o 'overflow' de notificações -->
+    <div class="container-lvl2-flash-message">
+        <div class="flash-message-container"></div>
     </div>
 
     <script defer>
