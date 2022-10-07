@@ -160,7 +160,7 @@
                     <table width="100%" style="max-width: 520px; margin: 0 auto;" id="container-main">
                     </table>
                     
-                    <tr id="add-main" class="add-btn" onClick="new MateriaMain()"><td><div>+</div></td></tr>
+                    <tr id="add-main" class="add-btn" onClick="new MateriaMain()" data-export="false"><td><div>+</div></td></tr>
                 </td>
             </tr>
 
@@ -183,7 +183,7 @@
             <td style="padding: 5px 0 20px">
                 <table width="100%" style="max-width: 480px; margin: 0 auto;" id="container-outras">
                 </table>
-                <tr id="add-outra" class="add-btn" onClick="new OutraMateria()"><td><div>+</div></td></tr>
+                <tr id="add-outra" class="add-btn" onClick="new OutraMateria()" data-export="false"><td><div>+</div></td></tr>
             </td>
             </tr>
             
@@ -255,12 +255,12 @@
 
     <!-- MENU DOS BOTÕES -->
     <!-- TODO: Retirar -->
-    <div class="menu-btns">
+    <div class="menu-btns" data-export="false">
         <button class="btn greyed" onClick="" id="link">
             <img src="img/link_icon.svg" width="24" alt="">
             Inserir Link
         </button>
-        <button class="btn" onClick="addConfirm(HTML, geraHTML())">
+        <button class="btn" onClick="addConfirm(HTML, 'geraHTML')">
             <img src="img/html_icon.svg" width="24" alt="">
             Exportar HTML
         </button>
@@ -268,11 +268,11 @@
 
     <!-- Flash Messages -->
     <!-- Esse container 'extra' é necessário pra permitir o 'overflow' de notificações -->
-    <div class="container-lvl2-flash-message">
+    <div class="container-lvl2-flash-message" data-export="false">
         <div class="flash-message-container"></div>
     </div>
 
-    <script defer>
+    <script defer data-export="false">
 		document.getElementById('link').onclick = function(e){
 			e = e || window.event;
 			e.preventDefault();

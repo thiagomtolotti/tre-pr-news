@@ -309,13 +309,3 @@ class FlashMessage{
  - Bloquear movimentação após exportar o HTML
  - Animação dinâmica (descer ou subir as outras matérias enquanto arrasta)
 */
-
-/*
- - Adicionar outras matérias - DONE
- - Remover matérias - DONE
- - BUG: Remover 'Outras matérias' - DONE
- - Adicionar matérias - DONE
- - CSS botão matérias principais - DONE
- - Deletar matérias principais - DONE
- - Mover matérias principais - DONE
-*/

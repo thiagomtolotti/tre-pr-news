@@ -1,89 +1,10 @@
-
-
-// // Flash-Messages
-// //objeto JSON com os 'tipos' de modal
-// let flash_messages_JSON = '{ \
-//     "HTML": { \
-//        "tipo": "aviso", \
-//        "titulo" : "Edição bloqueada", \
-//        "texto": "A partir desse momento não é mais posível editar a newsletter" \
-//     }, \
-//     "Export": { \
-//        "tipo" : "sucesso", \
-//        "titulo" : "Conteúdo Exportado", \
-//        "texto" : "O conteúdo da newsletter foi exportado, basta colá-lo no seu provedor de email"\
-//     }, \
-//     "removeMateria": { \
-//        "tipo" : "sucesso", \
-//        "titulo" : "Matéria removida", \
-//        "texto" : "Matéria removida com sucesso"\
-//     }, \
-//     "notRemoveMateria": { \
-//        "tipo" : "erro", \
-//        "titulo" : "Não é possível remover a matéria", \
-//        "texto" : "Não há matérias a serem removidas"\
-//     }, \
-//     "addMateria": { \
-//        "tipo" : "sucesso", \
-//        "titulo" : "Matéria Adicionada", \
-//        "texto" : "Matéria adicionada com sucesso"\
-//     } \
-//    }'
-   
-// let flashMessages = JSON.parse(flash_messages_JSON)
-
-// let elementToRemove
-// function deleteMateria(el){
-//     elementToRemove = el.parentNode
-//     let titulo = elementToRemove.querySelector('.titulo-materia')
-//     let texto = elementToRemove.querySelector('.texto-materia')
-//     let tipo
-    
-//     if(elementToRemove.classList.contains("outra-materia-container")){
-//         tipo = outra
-//     }
-
-//     let isLastChildrenEmpty = (titulo.innerHTML == "" && texto.children[0].innerHTML == '');
-
-//     if(isLastChildrenEmpty || modalopen){ //se a matéria a ser removida está vazia OU o modal está aberto (e o usuário confirmou que deseja mesmo remover)
-//         elementToRemove.remove();
-//         new FlashMessage(flashMessages.removeMateria)
-//     }else{
-//         addConfirm(tipo, 'callbackAlert', 'deletedMateria');
-//     }
-// }
-
-// function callbackAlert(callback){
-//     console.log(elementToRemove)
-//     if(alertValue){
-//         elementToRemove.remove()
-
-//         callback();
-//     }
-// }
-
-// function deletedMateria(){
-//     console.log('excluiu')
-//     new FlashMessage(flashMessages.removeMateria)
-// }
-
 function geraHTML(){
     //remove o atributo 'contenteditable' dos elementos
     document.querySelectorAll('*[contenteditable]').forEach(function(e){
         e.removeAttribute('contenteditable');
     });
-	//remove as labels
-	document.querySelectorAll('label').forEach(function(label){
-		
-		while(label.firstElementChild){
-			label.firstElementChild.style.marginBottom = "40px";
-			label.parentNode.insertBefore(label.firstElementChild, label);
-		}
-		
-		label.parentNode.removeChild(label);
-	});
 
-    //chama a função pra redirecionar o usuário pro inliner
+    //Transforma o CSS em Inline
 	showStyle();
 
     //copia o HTML para o clipboard
@@ -104,10 +25,13 @@ function geraHTML(){
     </html>"
 
     // seleciona o HTML de cada elemento com a classe 'final' e adiciona a variável html_meio
-    var html_meio = document.querySelector('.final').outerHTML;
+    let content_clone = document.body.cloneNode(true);
+    content_clone.querySelectorAll("[data-export]").forEach((element)=>{
+        element.parentNode.removeChild(element)
+    })
 
     //concatena as variáveis com o html em uma única variável "HTML_export"
-    var HTML_export = html_inicio + html_meio + html_final;
+    var HTML_export = html_inicio + content_clone.outerHTML + html_final;
 
     //coloca o HTML no clipboard
     navigator.clipboard.writeText(HTML_export);
@@ -178,7 +102,7 @@ editorEle.addEventListener('paste', function (e) {
     }
 });
 
-//TESTE do leitor de estilos - https://stackoverflow.com/questions/42025329/how-to-get-the-applied-style-from-an-element-excluding-the-default-user-agent-s
+//Leitor de estilos - https://stackoverflow.com/questions/42025329/how-to-get-the-applied-style-from-an-element-excluding-the-default-user-agent-s
     var proto = Element.prototype;
     var slice = Function.call.bind(Array.prototype.slice);
     var matches = Function.call.bind(proto.matchesSelector || 
@@ -237,7 +161,6 @@ editorEle.addEventListener('paste', function (e) {
             let rules= getAppliedCss(el)
 
             for (let i = 0; i < rules.length; i++){
-                console.log(el, rules[i].text)
                 el.style.cssText += rules[i].text
             }
         })

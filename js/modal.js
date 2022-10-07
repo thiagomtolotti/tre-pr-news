@@ -35,6 +35,7 @@ function addModal(tipo){
 		let overlay = document.createElement("div");
 		overlay.classList.add("overlay");
 		document.body.appendChild(overlay);
+		overlay.dataset.export = "false"
 
 		let modal = document.createElement("div");
 		modal.classList.add('prompt');
@@ -52,6 +53,8 @@ function addModal(tipo){
 			<button onclick="${tipo.funcaoExec}">Enviar</button> \
 			<button onclick="fechaModal()">Cancelar</button> \
 		</div>`);
+		
+		modal.dataset.export = "false"
 
 		document.body.appendChild(modal);
 		
@@ -88,6 +91,7 @@ function addConfirm(tipo, callback){
 		//cria os elementos para o modal
 		let overlay = document.createElement("div");
 		overlay.classList.add("overlay");
+		overlay.dataset.export = "false"
 		document.body.appendChild(overlay);
 
 		let modal = document.createElement("div");
@@ -103,6 +107,7 @@ function addConfirm(tipo, callback){
 			<button onclick="alertValue = true;${callback}();fechaModal()" id="ok-btn">OK</button> \
 			<button onclick="fechaModal()">Cancelar</button> \
 		</div>`);
+		modal.dataset.export = "false"
 
 		document.body.appendChild(modal);
 		
@@ -115,8 +120,6 @@ function addConfirm(tipo, callback){
 
 function callbackAlert(callback){
 	if(alertValue){
-		elementToRemove.remove()
-
 		callback();
 	}
 }
