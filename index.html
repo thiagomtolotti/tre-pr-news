@@ -96,7 +96,6 @@
     <script src="js/materias.js" defer></script>
     <script src="js/index.js" defer></script>
 	<script src="js/modal_oop.js" defer></script>
-	<script src="js/smart_toolbox.js" defer></script>
 	
 </head>
 
@@ -260,7 +259,7 @@
             <img src="img/link_icon.svg" width="24" alt="">
             Inserir Link
         </button>
-        <button class="btn" onClick="addConfirm(HTML, 'geraHTML')">
+        <button class="btn" id="btn-export">
             <img src="img/html_icon.svg" width="24" alt="">
             Exportar HTML
         </button>
@@ -273,29 +272,10 @@
     </div>
 
     <script defer data-export="false">
-		document.getElementById('link').onclick = function(e){
-			e = e || window.event;
-			e.preventDefault();
-			
-			if(!document.querySelector('#link').classList.contains('greyed')){
-				addModal(link);
-			}
-		};
-		
 		//a cada 200ms verifica se tem algum texto selecionado
 		window.setInterval(function(){
 			openLink();
 		}, 200);
-		
-		//aceita 'enter' pra adicionar a imagem - ADA Compliance
-		document.querySelectorAll("#materia-capa, #imagem-redes").forEach(function(element){
-			element.onkeydown = function(event){
-				if(event.keyCode === 13){
-					element.click();
-				}
-			}
-		});
-		
     </script>
 </body>
 

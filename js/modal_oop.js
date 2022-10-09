@@ -1,5 +1,3 @@
-
-
 //Objeto com os tipos de modais possíveis
 const tiposModal = {
 	addImg: {
@@ -43,8 +41,11 @@ class Modal{
 	fechaModal(){
 		this.overlay.remove()
 		this.modal.remove();
+
+		Modal.isOpen = false
 	}
 
+	//BUG: no InputModal o campo de input não é ADA compliant
 	focusOnly(){
 		let focusableElements = 'button'
 
@@ -148,3 +149,79 @@ class InputModal extends Modal{
 	}
 }
 Modal.isOpen = false
+
+//códigos que utilizam os modais
+
+//Adiciona os modais para adicionar imagens
+document.querySelectorAll('#materia-capa, #imagem-redes').forEach((img)=>{
+	img.onkeydown = (event) => {
+		if(event.keyCode === 13){
+			img.click();
+		}
+	}
+
+	img.onclick = (()=>{
+		new InputModal(tiposModal.addImg, ()=>{
+			let link = document.getElementById('modal-input').value;
+
+			//confere se o campo de texto é um link do drive
+			//TODO: usar fetch
+			if(link.startsWith("https://drive.google.com/file/d/")){
+				//separa a id do Google Drive
+				let driveId;
+				driveId = link.split("https://drive.google.com/file/d/").pop();
+				driveId = driveId.split('/')[0];
+		
+				//adiciona ao novo link
+				let newLink = "https://drive.google.com/uc?export=view&id=" + driveId;
+
+				//adiciona a tag img com o src sendo o link
+				img.src = newLink;
+				
+				return true
+			}else{
+				document.querySelector('.prompt').classList.add('erro');
+				document.querySelector('.err-msg').style.display = "block";
+			}
+		})
+	})
+})
+
+//Adiciona o modal de adicionar link à publicação
+let linkBtn = document.querySelector("#link")
+
+linkBtn.onclick = ((event)=>{
+	event = event || window.event
+	event.preventDefault();
+
+	if(!linkBtn.classList.contains('greyed')){
+		let textToLink = selection.extractContents()
+
+		new InputModal(tiposModal.link, ()=>{
+			let link = document.getElementById('modal-input').value;
+	
+			if(link !="" && link != null){
+				let linkElement = document.createElement('a');
+				
+				linkElement.target = "_blank";
+				linkElement.href = link;
+				linkElement.appendChild(textToLink);
+				selection.insertNode(linkElement);
+				
+				return true;
+			}else{
+				document.querySelector('.prompt').classList.add('erro');
+				document.querySelector('.err-msg').style.display = "block";
+			}
+		})
+	}
+})
+
+//Adiciona o modal perguntando se o usuário deseja exportar o HTML
+document.querySelector("#btn-export").onclick = (()=>{
+	new ConfirmModal(tiposModal.HTML, ()=>{
+		geraHTML();
+
+		return true;
+	})
+})
