@@ -146,7 +146,7 @@ class Materia{
         rendered();
     }
 
-    //BUG: Verificar se tem conteúdo
+    //BUG: Verificar se tem conteúdo (como callback faz a função em si)
     deleteMateria(){
         this.element.remove();
 

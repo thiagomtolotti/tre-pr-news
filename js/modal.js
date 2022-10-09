@@ -102,7 +102,7 @@ function addConfirm(tipo, callback){
 		`<div> \
 			<h3>Confirmação</h3> \
 				<p>${tipo.msg}</p> \
-			</div> \
+		</div> \
 		<div class="container"> \
 			<button onclick="alertValue = true;${callback}();fechaModal()" id="ok-btn">OK</button> \
 			<button onclick="fechaModal()">Cancelar</button> \
@@ -124,6 +124,7 @@ function callbackAlert(callback){
 	}
 }
 
+//TODO: Remover dependência do Google Drive
 //bloqueia o acesso via 'tab' em qualquer elemento enquanto o modal estiver aberto
 function focusOnly(focusableElements){
 	// add all the elements inside modal which you want to make focusable
