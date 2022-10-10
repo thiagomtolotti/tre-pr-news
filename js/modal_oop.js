@@ -47,12 +47,11 @@ class Modal{
 
 	//BUG: no InputModal o campo de input não é ADA compliant
 	focusOnly(){
-		let focusableElements = 'button'
+		let focusableElements = 'button, input'
 
 		const firstFocusableElement = this.modal.querySelectorAll(focusableElements)[0]; // get first element to be focused inside modal
 		const focusableContent = this.modal.querySelectorAll(focusableElements);
 		const lastFocusableElement = focusableContent[focusableContent.length - 1]; // get last elemnt to be focused inside modal
-
 
 		document.addEventListener('keydown', function(e) {
 		let isTabPressed = e.key === 'Tab' || e.keyCode === 9;
@@ -197,9 +196,9 @@ linkBtn.onclick = ((event)=>{
 	event.preventDefault();
 
 	if(!linkBtn.classList.contains('greyed')){
-		let textToLink = selection.extractContents()
 
 		new InputModal(tiposModal.link, ()=>{
+			let textToLink = selection.extractContents()
 			let link = document.getElementById('modal-input').value;
 	
 			if(link !="" && link != null){
