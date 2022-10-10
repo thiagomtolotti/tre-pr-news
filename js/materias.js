@@ -1,11 +1,6 @@
 const main_container = document.querySelector('#container-main')
 const outras_container = document.querySelector('#container-outras')
 
-//TODO: esses objetos estão obsoletos mas ainda não consegui remover a necessidade deles (melhorar os modais)
-const main = {
-    msg: "Há conteúdo na matéria sendo excluída, deseja continuar mesmo assim?",
-}
-
 //classe abstrata para os métodos e variáveis comuns a todos os tipos de matéria
 class Materia{
     constructor(){}
@@ -14,105 +9,109 @@ class Materia{
         new FlashMessage(flashMessages.addMateria)
     }
 
-    //BUG: Reaplica os eventListeners em TODAS as instâncias das matérias toda vez que uma nova matéria é criada, fazer aplicar apenas a que foi criada
-    //BUG: não entende o 'mouseup' as vezes 
-    //BUG: GRAVE: Não é possível selecionar para colocar os links pois o modal se movimenta
-    allowRepositioning(){
-        document.querySelectorAll('.remove-materia').forEach((materia)=>{
-            let initY, initMouseY;
-            let mouseDown = false
-            let materiaPos
+    allowRepositioning(){ 
+        let initY, initMouseY;
+        let mouseDown = false
+        let materiaPos
+
+        this.element.addEventListener("mousedown", (ev)=>{
+            if(ev.target != this.element.querySelector('td')){
+                if((ev.target.tagName == 'P' && ev.target.innerHTML != '') || ev.target.classList.contains("remove-btn")){
+                    return
+                }
+            } 
+
+            mouseDown = true
+
+            this.element.style.zIndex = 2
+            this.element.style.scale = 1.07
+            
+            //Determina a posição da materia selecionada no array de matérias
+            materiaPos = Array.apply(null, document.querySelectorAll(".remove-materia")).indexOf(this.element)
+
+            //Pega a posição do mouse na hora em que foi clicado
+            initY = this.element.style.top.replace("px", "")
+
+            initMouseY = ev.clientY - initY
+        })
+        this.element.addEventListener("mousemove", this.debounce((ev)=>{
+            if(!mouseDown) return
+
+            //move o elemento de acordo com o movimento
+            let currY = ev.clientY;
+
+            let deltaY = (currY - initMouseY)
+
+            this.element.style.top = deltaY + "px"
+        },5))
+        this.element.addEventListener("mouseup", (ev)=>{
+            this.mouseOut()
+        })
+        this.element.addEventListener("mouseleave", (ev)=>{
+            this.mouseOut()
+        })
+
+        this.mouseOut = ()=>{
+            let finalY = this.element.getBoundingClientRect().top
+            let outrasMaterias = document.querySelectorAll(".remove-materia");
+            let finalPos
     
-            materia.addEventListener("mousedown", (ev)=>{
-                mouseDown = true
-    
-                materia.style.position = "relative"
-                
-                //Determina a posição da materia selecionada no array de matérias
-                materiaPos = Array.apply(null, document.querySelectorAll(".remove-materia")).indexOf(materia)
-    
-                //Pega a posição do mouse na hora em que foi clicado
-                initY = materia.style.top.replace("px", "")
-    
-                initMouseY = ev.clientY - initY
-    
-                document.querySelectorAll("*").forEach((el)=>{
-                    el.style.userSelect = "none"
-                })
-            })
-            document.addEventListener("mousemove", (ev)=>{
-                if(!mouseDown) return
-    
-                //move o elemento de acordo com o movimento
-                let currY = ev.clientY;
-    
-                let deltaY = (currY - initMouseY)
-    
-                materia.style.top = deltaY + "px"
-            })
-            materia.addEventListener("mouseup", (ev)=>{
-                let finalY = materia.getBoundingClientRect().top
-                let outrasMaterias = document.querySelectorAll(".remove-materia");
-                let finalPos
-    
-                //avalia se o usuário subiu ou desceu o item e então avalia os itens para baixo ou para cima dele
-                if (materia.style.top.replace("px", "") > 0) { //MELHORIA: materia.style.top parece sensível, tentar colocar o delta
-                    for(let i = materiaPos; i < outrasMaterias.length; i++){
-                        //somente verifica as matérias que não são a que foi movimentada
-                        if(outrasMaterias[i] != materia){
-                            //se a matéria 'passou' a matéria sendo avaliada salva a posição dela, até que não tenha passado mais
-                            if(finalY > outrasMaterias[i].getBoundingClientRect().top){
-                                finalPos = i
-                            }else{
-                                break;
-                            }
+            //avalia se o usuário subiu ou desceu o item e então avalia os itens para baixo ou para cima dele
+            if (this.element.style.top.replace("px", "") > 0) { //MELHORIA: materia.style.top parece sensível, tentar colocar o delta
+                for(let i = materiaPos; i < outrasMaterias.length; i++){
+                    //somente verifica as matérias que não são a que foi movimentada
+                    if(outrasMaterias[i] != this.element){
+                        //se a matéria 'passou' a matéria sendo avaliada salva a posição dela, até que não tenha passado mais
+                        if(finalY > outrasMaterias[i].getBoundingClientRect().top){
+                            finalPos = i
+                        }else{
+                            break;
                         }
-                    }
-                    if(finalPos != undefined){
-                        materia.parentNode.insertBefore(materia, outrasMaterias[finalPos].nextSibling)
-                    }
-                }else{
-                    for(let i = materiaPos; i >= 0 ; i--){
-                        //somente verifica as matérias que não são a que foi movimentada
-                        if(outrasMaterias[i] != materia){
-                            //se a matéria 'passou' a matéria sendo avaliada salva a posição dela, até que não tenha passado mais
-                            if(finalY < outrasMaterias[i].getBoundingClientRect().top){
-                                finalPos = i;
-                            }else{
-                                break;
-                            }
-                        }
-                    }
-                    if(finalPos != undefined){
-                        materia.parentNode.insertBefore(materia, outrasMaterias[finalPos])
                     }
                 }
+                if(finalPos != undefined){
+                    this.element.parentNode.insertBefore(this.element, outrasMaterias[finalPos].nextSibling)
+                }
+            }else{
+                for(let i = materiaPos; i >= 0 ; i--){
+                    //somente verifica as matérias que não são a que foi movimentada
+                    if(outrasMaterias[i] != this.element){
+                        //se a matéria 'passou' a matéria sendo avaliada salva a posição dela, até que não tenha passado mais
+                        if(finalY < outrasMaterias[i].getBoundingClientRect().top){
+                            finalPos = i;
+                        }else{
+                            break;
+                        }
+                    }
+                }
+                if(finalPos != undefined){
+                    this.element.parentNode.insertBefore(this.element, outrasMaterias[finalPos])
+                }
+            }
     
-    
-                //reseta as variáveis
-                mouseDown = false
-                document.querySelectorAll("*").forEach((el)=>{
-                    el.style.userSelect = "auto"
-                })
-                materia.style.position = "relative"
-                materia.style.top = "0px"
-            })
-        })
+            //reseta as variáveis
+            mouseDown = false
+            this.element.style.zIndex = "auto"
+            this.element.style.scale = "initial"
+            this.element.style.top = "0px"
+        }
     }
 
     addRemoveBtn(){
-        document.querySelectorAll(".remove-materia").forEach((materia)=>{
-            materia.addEventListener("mouseenter", this.debounce((ev)=>{
-                let removeBtn = `<td class="remove-btn" onclick="achaElemento(this.parentNode).deleteMateria()"></td>`
-                materia.insertAdjacentHTML('beforeend', removeBtn)
-            },50))
+        let removeBtn = 
+
+        this.element.addEventListener("mouseenter", this.debounce((ev)=>{
+            removeBtn = document.createElement("td")
+            removeBtn.classList.add("remove-btn")
+
+            this.element.insertAdjacentElement('beforeend', removeBtn)
+
+            removeBtn.addEventListener("click", ()=>{this.deleteMateria()})
+        },50))
     
-            materia.addEventListener("mouseleave", this.debounce((ev)=>{
-                let removeBtn = materia.querySelector('.remove-btn')
-    
-                removeBtn.remove()
-            },50))
-        })
+        this.element.addEventListener("mouseleave", this.debounce((ev)=>{
+            removeBtn.remove()
+        },50))
     }
 
     debounce(func, wait, immediate){
@@ -139,6 +138,7 @@ class Materia{
     
     render(rendered){
         this.container.insertAdjacentElement("beforeend", this.element)
+        setTimeout(()=>{this.element.classList.add('show')},0)
 
         this.allowRepositioning();
         this.addRemoveBtn();
@@ -146,12 +146,16 @@ class Materia{
         rendered();
     }
 
-    //BUG: Verificar se tem conteúdo (como callback faz a função em si)
+    //TODO: Verificar se tem conteúdo
     deleteMateria(){
-        this.element.remove();
+        console.log(this.element)
+        this.element.classList.remove('show')
+        this.element.addEventListener("transitionend",()=>{
+            this.element.remove();
+        })
 
         //retira o elemento do array das materias
-        this.constructor.allInstances.splice(this.constructor.allInstances.indexOf(achaElemento(this.element)), 1)
+        this.constructor.allInstances.splice(this.constructor.allInstances.indexOf(this.element), 1)
         new FlashMessage(flashMessages.removeMateria)
     }
 }
@@ -208,24 +212,6 @@ class OutraMateria extends Materia{
 //arrays com todas as matérias (necessárias para pegar a referência do objeto na hora de deletar matérias)
 OutraMateria.allInstances = []
 MateriaMain.allInstances = []
-
-function achaElemento(element){
-    if(element.classList.contains("outra-materia-container")){
-        for(let i = 0; i < OutraMateria.allInstances.length; i++){
-            if(OutraMateria.allInstances[i].element == element){
-                return OutraMateria.allInstances[i]
-            }
-        }
-    }else{
-        console.log('aa')
-        for(let i = 0; i < MateriaMain.allInstances.length; i++){
-            if(MateriaMain.allInstances[i].element == element){
-                console.log(MateriaMain.allInstances[i])
-                return MateriaMain.allInstances[i]
-            }
-        }
-    }
-}
 
 // Flash-Messages
 //objeto JSON com os 'tipos' de modal
@@ -314,6 +300,5 @@ class FlashMessage{
 }
 
 /* TODO
- - Bloquear movimentação após exportar o HTML
  - Animação dinâmica (descer ou subir as outras matérias enquanto arrasta)
 */
