@@ -177,6 +177,8 @@ document.querySelectorAll('#materia-capa, #imagem-redes').forEach((img)=>{
 
 				//adiciona a tag img com o src sendo o link
 				img.src = newLink;
+
+				new FlashMessage(flashMessages.addImg)
 				
 				return true
 			}else{

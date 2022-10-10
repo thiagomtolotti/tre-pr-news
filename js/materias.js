@@ -254,7 +254,12 @@ let flash_messages_JSON = '{ \
        "tipo" : "sucesso", \
        "titulo" : "Matéria Adicionada", \
        "texto" : "Matéria adicionada com sucesso"\
-    } \
+    }, \
+    "addImg": { \
+        "tipo" : "sucesso",\
+        "titulo" : "Imagem Adicionada",\
+        "texto": "imagem adicionada com sucesso ao email"\
+    }\
    }'
    
 let flashMessages = JSON.parse(flash_messages_JSON)
