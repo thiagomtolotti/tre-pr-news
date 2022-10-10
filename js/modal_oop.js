@@ -13,7 +13,7 @@ const tiposModal = {
 	}
 }
 
-//Orientação a objetos
+//Orientação a objetos dos modais
 //classe abstrata para os diferentes tipos de modais
 class Modal{
 	constructor(tipo, callback){
@@ -222,8 +222,134 @@ linkBtn.onclick = ((event)=>{
 //Adiciona o modal perguntando se o usuário deseja exportar o HTML
 document.querySelector("#btn-export").onclick = (()=>{
 	new ConfirmModal(tiposModal.HTML, ()=>{
-		geraHTML();
+		geraHTML(()=>{
+			new FlashMessage(flashMessages.Export)
+		});
 
 		return true;
 	})
 })
+
+
+async function geraHTML(callback){
+	//pega o head do HTML a ser exportado
+	const htmlHead = await fetch('./index.html')
+		.then((response)=>{
+			// The API call was successful!
+			return response.text()
+		})
+		.then((html)=>{
+			// Convert the HTML string into a document object
+			let parser = new DOMParser();
+			let doc = parser.parseFromString(html, 'text/html');
+			return doc
+		})
+		//Remove as tags não utilizadas
+		.then((doc)=>{
+			let head = doc.querySelector('head')
+			let elementsToRemove = head.querySelectorAll("link, script, style")
+			
+			// remove todos os elementos que não devem ser exportado
+			elementsToRemove.forEach((el)=>{
+				el.parentElement.removeChild(el)
+			})
+
+			return head
+		})
+		.catch((erro)=>{
+			console.log(erro)
+	
+			new FlashMessage(flashMessages.erroHTML)
+		})
+
+		
+	let htmlBody = document.querySelector('html').cloneNode(true)
+
+	//remove os elementos que não devem ser exportados
+	let elementsToRemove = htmlBody.querySelectorAll('[data-export = false], script, link:not(#newsletter)')
+	elementsToRemove.forEach((el)=>{
+		el.parentElement.removeChild(el)
+	})
+
+	//transforma o css em inline
+	showStyle(htmlBody)
+
+	//remove o 'contenteditable' das divs
+	htmlBody.querySelectorAll('*[contenteditable]').forEach(function(el){
+		el.removeAttribute('contenteditable');
+	});
+
+	//pega somente o body
+	htmlBody = htmlBody.querySelector('body').outerHTML
+
+	//remove todos os comentários
+	let bodyString = String(htmlBody).replaceAll(/<!--[\s\S]*?-->/g, '')
+
+	//coloca o HTML no clipboarddy.innerHTML);
+	console.log(htmlHead.outerHTML + bodyString)
+    navigator.clipboard.writeText(htmlHead.outerHTML + bodyString)
+
+	callback()
+}
+
+//Leitor de estilos - https://stackoverflow.com/questions/42025329/how-to-get-the-applied-style-from-an-element-excluding-the-default-user-agent-s
+var proto = Element.prototype;
+var slice = Function.call.bind(Array.prototype.slice);
+var matches = Function.call.bind(proto.matchesSelector || 
+				proto.mozMatchesSelector || proto.webkitMatchesSelector ||
+				proto.msMatchesSelector || proto.oMatchesSelector);
+
+// Returns true if a DOM Element matches a cssRule
+var elementMatchCSSRule = function(element, cssRule) {
+	return matches(element, cssRule.selectorText);
+};
+
+// Returns true if a property is defined in a cssRule
+var propertyInCSSRule = function(prop, cssRule) {
+	return prop in cssRule.style && cssRule.style[prop] !== "";
+};
+
+// Here we get the cssRules across all the stylesheets in one array
+var cssRules = slice(document.styleSheets).reduce(function(rules, styleSheet) {
+	return rules.concat(slice(styleSheet.cssRules));
+}, []);
+
+var getAppliedCss = function(elm) {
+	// get only the css rules that matches that element
+	var elementRules = cssRules.filter(elementMatchCSSRule.bind(null, elm));
+	var rules =[];
+	if(elementRules.length) {
+		for(i = 0; i < elementRules.length; i++) {
+			var e = elementRules[i];
+
+			//remove as chaves e os seletores do css
+			let cssText = e.cssText
+			e.cssText.includes("{") ? cssText = e.cssText.substring(e.cssText.indexOf("{") + 1).split("}")[0] : cssText = e.cssText
+
+			rules.push({
+				order:i,
+				text: cssText
+			})
+		}		
+	}
+	
+	if(elm.getAttribute('style')) {
+		rules.push({
+				order:elementRules.length,
+				text:elm.getAttribute('style')
+			})
+	}
+	return rules;
+}
+
+function showStyle(rootEl){
+	let elements = rootEl.querySelectorAll(".final *");
+
+	elements.forEach((el)=>{
+		let rules= getAppliedCss(el)
+
+		for (let i = 0; i < rules.length; i++){
+			el.style.cssText += rules[i].text
+		}
+	})
+}

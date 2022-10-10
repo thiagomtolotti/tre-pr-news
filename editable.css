@@ -1,3 +1,4 @@
+/* Arquivo para os estilos relacionados ao editor */
 [contenteditable]{
     outline: none;
     cursor: text;

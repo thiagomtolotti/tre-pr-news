@@ -229,7 +229,7 @@ function achaElemento(element){
 
 // Flash-Messages
 //objeto JSON com os 'tipos' de modal
-let flash_messages_JSON = '{ \
+let flashMessages = JSON.parse('{ \
     "HTML": { \
        "tipo": "aviso", \
        "titulo" : "Edição bloqueada", \
@@ -259,10 +259,13 @@ let flash_messages_JSON = '{ \
         "tipo" : "sucesso",\
         "titulo" : "Imagem Adicionada",\
         "texto": "imagem adicionada com sucesso ao email"\
+    },\
+    "erroHTML" : { \
+        "tipo" : "erro",\
+        "titulo" : "Houve um erro inesperado",\
+        "texto": "Houve um erro inesperado ao exportar o HTML, favor entrar em contato com a SCV"\
     }\
-   }'
-   
-let flashMessages = JSON.parse(flash_messages_JSON)
+}')
 
 //BUG: CSS: Container dos modais bloqueia a edição pois 'fica na frente'
 class FlashMessage{
