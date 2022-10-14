@@ -43,15 +43,16 @@ class Materia{
             let deltaY = (currY - initMouseY)
 
             this.element.style.top = deltaY + "px"
-        },5))
+        },1))
         this.element.addEventListener("mouseup", (ev)=>{
-            this.mouseOut()
+            this.mouseOut(ev)
         })
         this.element.addEventListener("mouseleave", (ev)=>{
-            this.mouseOut()
+            this.mouseOut(ev)
         })
 
-        this.mouseOut = ()=>{
+        this.mouseOut = (ev)=>{
+            if(!mouseDown) return
             let finalY = this.element.getBoundingClientRect().top
             let outrasMaterias = document.querySelectorAll(".remove-materia");
             let finalPos
@@ -91,7 +92,7 @@ class Materia{
     
             //reseta as variáveis
             mouseDown = false
-            this.element.style.zIndex = "auto"
+            this.element.style.zIndex = "1"
             this.element.style.scale = "initial"
             this.element.style.top = "0px"
         }

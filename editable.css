@@ -59,126 +59,131 @@
 }
 
 .prompt{
+	font-family: 'Montserrat';
+
 	background-color: #f6f4f3;
-	color: #0a375c;
-	box-shadow: 0 0 15px rgba(0,0,0,.3);
-
-	width: 400px;
-	height: 175px;
-
-	padding: 25px;
-
-	border: none;
-	border-radius: 5px;
-
-	font-family: sans-serif;
-
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
+	color: #062137;
+	box-shadow: 0 0 15px rgba(0,0,0,.2);
 	
+	width: 500px;
+
 	position: fixed;
-	top: calc(50% - 88px);
-	left: calc(50% - 223px);
+	top: calc(50vh - 125px);
+	left: calc(50% - 250px);
 }
 
-.prompt h3{
-	margin-top: 0;
-	margin-bottom: 3px;
+.prompt .content{
+	margin: 40px;
+
+	line-height: 1.4;
+	font-weight: 500;
+
+	position: relative;
 }
 
-.prompt p{
-	margin-top: 0;
-	font-size: 11pt;
+.prompt h2{
+	line-height: 1.2;
+	margin: 0;
 }
 
-.prompt input{
-	border: 2px solid #3183af;
-	border-radius: 5px;
+.prompt .btn-container{
+	background-color: #ece8e6;
+	min-height: 85px;
 
-	background-color: transparent;
+	margin: auto;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
 
-	font-size: 12pt;
-	line-height: 20pt;
-
-	padding: 5px 10px;
-	width: calc(100% - 25px);
-}
-
-.prompt .container{
-	align-self: flex-end;
-	margin-top: auto;
-}
-
-.container > *{
-	margin: 0 5px;
-}
-
-.prompt button:first-of-type{
-	background-color: #3183af;
-	color: #f6f4f3;
-}
-
-.prompt button:focus{
-	border: 2px solid #f6f4f3;
-	outline: 2px solid #3183af;
-}
-
-.prompt button:first-of-type:hover{
-	background-color: #0a375c;	
-}
-
-.prompt button:hover{
-	background-color: #e4e0dd;	
+	padding: 0 20px;
 }
 
 .prompt button{
-	background-color: #f6f4f3;
-	border: 2px solid rgba(0,0,0,0);
-	outline: 2px solid rgba(0,0,0,0);
-	border-radius: 3px;
-	padding: 10px 20px;
+	font-family: 'Montserrat','Helvetica', 'Arial', sans-serif;
+	font-weight: 600;
+	font-size: 14pt;
+	letter-spacing: .5px;
 
-	font-weight: bold;
-	text-transform: uppercase;
+	border: none;
+	padding: 10px 20px;
+	margin: auto 15px auto 0;
+
+	color: #f6f4f3;
+	background-color: #3183af;
+	border-radius: 3px;
 
 	cursor: pointer;
 }
 
-.erro input{
+.prompt button.cancel{
+	background-color: transparent;
+	color: #0a375c;
+
+	font-weight: 500;
+
+	transition: .1s ease-out;
+}
+
+.prompt button.cancel:hover{
+	background-color: rgba(0,0,0,.1);
+}
+
+.prompt .close-btn{
+	position: absolute;
+
+	background-image: url('./img/close-icon.svg');
+	width: 25px;
+	height: 25px;
+
+	top: 20px;
+	right: 20px;
+
+	cursor: pointer;
+}
+
+.prompt.input p{
+	margin: 5px 0 30px;
+}
+
+.prompt.input input{
+	font-family: 'Montserrat', 'Segoe UI', 'Helvetica', 'Arial', sans-serif;
+
+	font-size: 12pt;
+	padding: 8px 10px;
+	width: calc(100% - 20px);
+
+	border-radius: 5px;
+	border: 2px solid #3183af;
+	
+	background-color: transparent;
+}
+.prompt.erro input{
 	border: 2px solid #ff2c48;
 }
 
-.erro .err-msg{
-	font-size:13px;
-	text-align: right;
-	color: #ff2c48;
-	margin-top: 5px;
-}
-
-.alert{
-	width: 400px;
-	height: 150px;
-}
-
-.alert p{
-	margin-right: 100px;
-}
-
-.alert h3{
-	margin-top: 0;
-	margin-bottom: 10px;
-}
-
-.hidden{
+.prompt p.error-msg{
 	display: none;
+
+	font-size: 13px;
+	text-align: right;
+
+	color: #ff2c48;
+
+	margin: 5px 0;
+
+	position: absolute;
+	right: 0;
+}
+
+.prompt.erro .error-msg{
+	display: block;
 }
 
 .overlay{
 	width: 100vw;
 	height: 100vw;
 	
-	background-color: rgba(0,0,0,.3);
+	background-color: rgba(0,0,0,.2);
 	
 	position: fixed;
 	top: 0;

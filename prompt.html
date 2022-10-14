@@ -17,7 +17,7 @@
 
             min-height: 98vh;
 			
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Montserrat','Helvetica', 'Arial', sans-serif;
 			color: #0a375c;
         }
 		
@@ -25,217 +25,215 @@
 			margin: 80px;
 		}
 	</style>
-
-    <style>
-        .prompt{
-            background-color: #f6f4f3;
-            color: #0a375c;
-			box-shadow: 0 0 15px rgba(0,0,0,.3);
-
-            width: 400px;
-            height: 175px;
-
-            padding: 25px;
-
-            border: none;
-            border-radius: 5px;
-
-
-            display: flex;
-            flex-direction: column;
-			justify-content: flex-start;
-        }
-
-        .prompt h3{
-            margin-top: 0;
-            margin-bottom: 3px;
-        }
-
-        .prompt p{
-            margin-top: 0;
-            font-size: 11pt;
-        }
-
-        .prompt input{
-            border: 2px solid #3183af;
-			border-radius: 5px;
-			
-            background-color: transparent;
-
-            font-size: 12pt;
-            line-height: 20pt;
-			
-			padding: 5px 10px;
-			width: calc(100% - 25px);
-        }
-
-        .prompt .container{
-            align-self: flex-end;
-			margin-top: auto;
-        }
-
-        .container > *{
-            margin: 0 5px;
-        }
-		
-		.prompt button:first-of-type{
-			background-color: #3183af;
-			color: #f6f4f3;
-		}
-		
-		.prompt button:focus{
-			border: 2px solid #f6f4f3;
-			outline: 2px solid #3183af;
-		}
-		
-		.prompt button:first-of-type:hover{
-			background-color: #0a375c;	
-		}
-		
-		.prompt button:hover{
-			background-color: #e4e0dd;	
-		}
-
-        .prompt button{
-            background-color: #f6f4f3;
-            border: none;
-			border-radius: 3px;
-            padding: 10px 20px;
-
-            font-weight: bold;
-            text-transform: uppercase;
-
-            cursor: pointer;
-        }
-    </style>
 	
+	<!-- Botões -->
 	<style>
-		.text-editor{
-			background-color: #f6f4f3;
-			height: 30px;
-			padding: 5px;
-			
-			border-radius: 3px;
-				
-			box-shadow: 0 0 15px rgba(0,0,0, .3);
-			
-			display: flex;
-		}
-		
-		.text-editor .button{
-			margin: 0 4px;
-			
-			width: 30px;
-			height: 100%;
-			transition: .3s;
-			
-			cursor: pointer;
-		}
-		
-		.text-editor .button:hover{
-			background-color: #e8e3e0;
-		}
-		
-		.text-editor .button img{
-			max-height: calc(100% - 10px);
-			padding: 5px;
-		}
-		
-		.text-editor .vr{
-			width: 1px;
-			
-			border: none;
-			background-color: #D3CAC5;
-			margin: 2px 7px;
-		}
-	</style>
-	
-	<!-- Alert -->
-	<style>
-		.alert{
-            width: 400px;
-            height: 150px;
-		}
-		
-		.alert p{
-			margin-right: 100px;
-		}
-		
-		
-		.alert h3{
-            margin-top: 0;
-            margin-bottom: 10px;
-        }
-
-	</style>
-	
-	<style>
-		.erro input{
-			border: 2px solid #ff2c48;
-		}
-		
-		.erro .msg{
-			font-size:13px;
-			text-align: right;
-			color: #ff2c48;
-			margin-top: 5px;
-		}
-	</style>
-	
-	<style>
-		.menu-btns{
-			min-width: 200px;
-			border-radius: 4px;
-
-			background-color: #0a375c;
-
-			overflow: hidden;
-
-			display: flex;
-			flex-direction: column;
-
-			font-family: sans-serif;
-			
-			box-shadow: 0 0 10px rgba(0,0,0,.3);
-		}
-		
 		.btn{
-			background-color: #0a375c;
+			background: #062137;
 			color: #f6f4f3;
-			
-			height: 50px;
-			
-			padding: 10px 35px 10px 25px;
-			font-size: 11pt;
-			
-			font-weight: 700;
-			
+
+			border-radius: 30px 5px;
+			padding: 15px 30px;
+
 			display: flex;
-			align-items: center;
+
+			box-shadow: 0 0 9px rgba(6,33,55..3);
+
+			font-family: 'Montserrat Semibold';
+			font-size: 18px;
+
+			transition: .4s;
 			cursor: pointer;
-			
-			transition: .3s;
 		}
-		
-		.btn svg, .btn img{
-			margin-right: 15px;
+		.btn *{
+			margin: 0;
+			line-height: 2;
+		}
+		.btn img{
+			width: 25px;
+			max-width: 25px;
+
+			margin-left: 20px;
 		}
 
 		.btn:hover{
-			background-color: #256182;
+			transform: scale(1.03);
+			background-color: #3183af;
 		}
-		
-		.tab{
-			padding-left: 40px;
+	</style>
+	<!-- Caixa de botoes -->
+	<style>
+		.btn-box .btn{
+			border-radius: 0;
+			box-shadow: 0 0 0 0;
 		}
-		
-		.greyed{
-			background-color: #8c8c8c;
-			cursor: default;
+		.btn-box .btn:first-child{
+			border-radius: 30px 5px 0 0;
 		}
-		
-		.greyed:hover{
-			background-color: #8c8c8c;
+		.btn-box .btn:last-child{
+			border-radius: 0 0 30px 5px;
+		}
+		.btn-box .btn:not(:last-child){
+			border-bottom: 2px solid #f6f4f3;
+		}
+		.btn-box{
+			box-shadow: 0 0 9px rgba(6,33,55..3);
+			border-radius: 30px 0 30px;
+		}
+	</style>
+	<!-- Botão Terciário -->
+	<style>
+		.btn-tertiary{
+			color: #3183af;
+
+			font-family: 'Montserrat Regular';
+			font-size: 20px;
+
+			cursor: pointer;
+		}
+		.btn-tertiary h4{
+			margin: 2px auto;
+		}
+		.btn-tertiary img{
+			width: 25px;
+			margin-left: 8px;
+		}
+		.btn-tertiary div{
+			display: inline-flex;
+		}
+		.btn-tertiary::after{
+			content: '';
+			display: block;
+
+			width: 100%;
+			transform: scaleX(0);
+
+			border-bottom: 2px solid #3183af;
+			margin: 5px auto 0;
+			transition: .4s ease-out;
+		}
+
+		.btn-tertiary:hover::after{
+			transform: scaleX(1);
+		}
+	</style>
+
+	<!-- Prompt -->
+	<style>
+		.prompt{
+			background-color: #f6f4f3;
+			box-shadow: 0 0 15px rgba(0,0,0,.2);
+			
+			width: 500px;
+
+			position: relative;
+		}
+
+		.prompt .content{
+			margin: 40px;
+
+			line-height: 1.4;
+			font-weight: 500;
+
+			position: relative;
+		}
+
+		.prompt h2{
+			line-height: 1.2;
+			margin: 0;
+		}
+
+		.prompt .btn-container{
+			background-color: #ece8e6;
+			min-height: 85px;
+
+			margin: auto;
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+
+			padding: 0 20px;
+		}
+
+		.prompt button{
+            font-family: 'Montserrat','Helvetica', 'Arial', sans-serif;
+			font-weight: 600;
+			font-size: 14pt;
+			letter-spacing: .5px;
+
+			border: none;
+			padding: 10px 20px;
+			margin: auto 15px auto 0;
+
+			color: #f6f4f3;
+			background-color: #3183af;
+			border-radius: 3px;
+
+			cursor: pointer;
+		}
+
+		.prompt button.cancel{
+			background-color: transparent;
+			color: #0a375c;
+
+			font-weight: 500;
+
+			transition: .1s ease-out;
+		}
+
+		.prompt button.cancel:hover{
+			background-color: rgba(0,0,0,.1);
+		}
+
+		.prompt .close-btn{
+			position: absolute;
+
+			background-image: url('./img/close-icon.svg');
+			width: 25px;
+			height: 25px;
+
+			top: 20px;
+			right: 20px;
+
+			cursor: pointer;
+		}
+
+		.prompt.input p{
+			margin: 5px 0 30px;
+		}
+
+		.prompt.input input{
+			font-family: 'Montserrat', 'Segoe UI', 'Helvetica', 'Arial', sans-serif;
+
+			font-size: 12pt;
+			padding: 8px 10px;
+			width: calc(100% - 20px);
+
+			border-radius: 5px;
+			border: 2px solid #3183af;
+			
+			background-color: transparent;
+		}
+		.prompt.erro input{
+			border: 2px solid #ff2c48;
+		}
+
+		.prompt p.error-msg{
+			display: none;
+
+			font-size: 13px;
+			text-align: right;
+
+			color: #ff2c48;
+
+			margin: 5px 0;
+
+			position: absolute;
+			right: 0;
+		}
+
+		.prompt.erro .error-msg{
+			display: block;
 		}
 	</style>
 
@@ -253,6 +251,8 @@
 
 			width: 500px;
 			height: 110px;
+
+			font-weight: 500;
 		}
 		.flash-message .barra-lateral{
 			width: 10px;
@@ -295,130 +295,86 @@
 			background-color: #01d451;
 		}
 		.flash-message.sucesso .icon{
-			background-image: url("./img-testes/sucesso-icon.svg");
+			background-image: url("./img/sucesso-icon.svg");
 		}
 
 		.flash-message.erro .barra-lateral{
 			background-color: #ff2c48;
 		}
 		.flash-message.erro .icon{
-			background-image: url("./img-testes/erro-icon.svg");
+			background-image: url("./img/erro-icon.svg");
 		}
 		
 		.flash-message.aviso .barra-lateral{
 			background-color: #ffbb33;
 		}
 		.flash-message.aviso .icon{
-			background-image: url("./img-testes/aviso-icon.svg");
+			background-image: url("./img/aviso-icon.svg");
 		}
 
 	</style>
 </head>
 <body>
-	<div class="menu-btns">
+	<div class="btn">
+		<h4>Exportar HTML</h4>
+		<img src="img/html_icon.svg" alt="" srcset="">	
+	</div>
+
+	<div class="btn-box">
 		<div class="btn">
-			<img src="img/add_icon.svg" width="24">
-			Adicionar Matéria
-		</div>
-		<div class="btn greyed">
-			<img src="img/remove_icon.svg" width="24">
-			Remover Última Matéria
-		</div>
-		<div class="btn">
-			<img src="img/add_icon.svg" width="24">
-			Adicionar Outra Matéria
-		</div>
-		<div class="btn greyed">
-			<img src="img/remove_icon.svg" width="24">
-			Remover Última Outra Matéria
-		</div>
-		<div class="btn greyed">
-			<img src="img/link_icon.svg" width="24">
-			Inserir Link
+			<h4>Exportar HTML</h4>
+			<img src="img/html_icon.svg" alt="" srcset="">	
 		</div>
 		<div class="btn">
-			<img src="img/html_icon.svg" width="24">
-			Exportar HTML
+			<h4>Exportar HTML</h4>
+			<img src="img/html_icon.svg" alt="" srcset="">	
 		</div>
 	</div>
-	
-    <div class="prompt">
-        <div>
-            <h3>Link</h3>
-            <p>Adicione o link</p>
-        </div>
-        <div>
-            <input type="text">
-        </div>
-        <div class="container">
-            <button>Enviar</button>
-            <button>Cancelar</button>
-        </div>
-    </div>
-	
-	<div class="prompt erro">
-        <div>
-            <h3>Link</h3>
-            <p>Adicione o link</p>
-        </div>
-        <div>
-            <input type="text">
-			<p class="msg">Link Inválido, tente novamente</p>
-        </div>
-        <div class="container">
-            <button>Enviar</button>
-            <button>Cancelar</button>
-        </div>
-    </div>
-	
-	<div class="prompt alert">
-        <div>
-            <h3>Confirmação</h3>
-            <p>Gerar o HTML é uma ação irreversível, tem certeza de que deseja continuar?</p>
-        </div>
-        <div class="container">
-            <button id="ok-btn">OK</button>
-            <button>Cancelar</button>
-        </div>
-    </div>
-	
-	<div class="text-editor">
-		<div class="button">
-			<img src="img/Assets/return-icon.png" alt="">
+
+	<div class="btn-tertiary">
+		<div>
+			<h4>Voltar ao início</h4>
+			<img src="img/back-icon.svg" alt="">
 		</div>
-				<div class="button">
-			<img src="img/Assets/return-icon.png" alt="">
+	</div>
+
+	<div class="prompt">
+		<div class="content">
+			<h2>Confirmação</h2>
+			<p>Gerar o HTML é uma ação irreversível, tem certeza de que deseja continuar?</p>
 		</div>
-		
-		<div class="vr"></div>
-		
-		<div class="button">
-			<img src="img/Assets/return-icon.png" alt="">
+		<div class="btn-container">
+			<button class="cancel">Cancelar</button>
+			<button>Enviar</button>
 		</div>
-		<div class="button">
-			<img src="img/Assets/return-icon.png" alt="">
+		<div class="close-btn"></div>
+	</div>
+
+	<div class="prompt input">
+		<div class="content">
+			<h2>Link</h2>
+			<p>Adicione o link</p>
+			<input type="text">
 		</div>
-		<div class="button">
-			<img src="img/Assets/return-icon.png" alt="">
+		<div class="btn-container">
+			<button class="cancel">Cancelar</button>
+			<button id="send">Enviar</button>
 		</div>
-		
-		<div class="vr"></div>
-		
-		<div class="button">
-			<img src="img/Assets/return-icon.png" alt="">
+		<div class="close-btn"></div>
+	</div>
+
+	<div class="prompt input erro">
+		<div class="content">
+			<h2>Link</h2>
+			<p>Adicione o link</p>
+			<input type="text">
+			<p class="error-msg">Link Inválido, tente novamente</p>
 		</div>
-		
-		<div class="vr"></div>
-		
-		<div class="button">
-			<img src="img/Assets/return-icon.png" alt="">
+		<div class="btn-container">
+			<button class="cancel">Cancelar</button>
+			<button id="send">Enviar</button>
 		</div>
-		<div class="button">
-			<img src="img/Assets/return-icon.png" alt="">
-		</div>
-		<div class="button">
-			<img src="img/Assets/return-icon.png" alt="">
-		</div>
+		<div class="close-btn"></div>
 	</div>
 
 	<div class="flash-message sucesso">

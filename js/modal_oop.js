@@ -15,6 +15,7 @@ const tiposModal = {
 
 //Orientação a objetos dos modais
 //classe abstrata para os diferentes tipos de modais
+
 class Modal{
 	constructor(tipo, callback){
 		this.msg = tipo.msg
@@ -30,12 +31,19 @@ class Modal{
 	}
 
 	addEventListeners(){
-		this.modal.querySelector("#ok-btn").onclick = (()=>{
+		this.modal.querySelector("#send").onclick = (()=>{
 			this.callback() ? this.fechaModal() : ''
 		})
-		this.modal.querySelector("button:nth-child(2)").onclick = (()=>{
-			this.fechaModal();
+		this.modal.querySelectorAll("button:first-child, .close-btn").forEach((el)=>{
+			el.onclick = ((ev)=>{
+				if(ev.target != el) return
+
+				this.fechaModal();
+			})
 		})
+		document.querySelector(".overlay").onclick = ()=>{
+			this.fechaModal();
+		}
 	}
 
 	fechaModal(){
@@ -45,7 +53,6 @@ class Modal{
 		Modal.isOpen = false
 	}
 
-	//BUG: no InputModal o campo de input não é ADA compliant
 	focusOnly(){
 		let focusableElements = 'button, input'
 
@@ -94,14 +101,15 @@ class ConfirmModal extends Modal{
 		this.modal.dataset.export = "false"
 
 		this.modal.insertAdjacentHTML('afterbegin', `\
-		<div> \
-			<h3>${this.titulo}</h3> \
+		<div class="content"> \
+			<h2>${this.titulo}</h2> \
 			<p>${this.msg}</p> \
 		</div> \
-		<div class="container"> \
-			<button id="ok-btn">OK</button> \
-			<button>Cancelar</button> \
-		</div>`)
+		<div class="btn-container"> \
+			<button class="cancel">Cancelar</button> \
+			<button id="send">Enviar</button> \
+		</div> \
+		<div class="close-btn"></div>`)
 
 		document.body.appendChild(this.overlay);
 		document.body.appendChild(this.modal)
@@ -124,21 +132,22 @@ class InputModal extends Modal{
 		this.overlay.classList.add("overlay");
 		this.overlay.dataset.export = "false"
 		this.modal.classList.add('prompt')
+		this.modal.classList.add('input')
 		this.modal.dataset.export = "false"
 
 		this.modal.insertAdjacentHTML('afterbegin', `\
-		<div> \
-			<h3>${this.titulo}</h3> \
+		<div class="content"> \
+			<h2>${this.titulo}</h2> \
 			<p>${this.msg}</p> \
-		</div> \
-		<div> \
 			<input type="text" id="modal-input"> \
-			<p class="err-msg hidden">Link inválido, tente novamente</p>\
+			<p class="error-msg">Link inválido, tente novamente</p>\
 		</div> \
-		<div class="container"> \
-			<button id="ok-btn">Enviar</button> \
-			<button>Cancelar</button> \
-		</div>`)
+		</div> \
+		<div class="btn-container"> \
+			<button class="cancel">Cancelar</button> \
+			<button id="send">Enviar</button> \
+		</div> \
+		<div class="close-btn"></div>`)
 
 		document.body.appendChild(this.overlay);
 		document.body.appendChild(this.modal)
