@@ -4,7 +4,7 @@
     cursor: text;
 }
 
-#footer, .menu-btns{
+#footer, .btn-box{
 	-webkit-user-select: none; /* Safari */        
 	-moz-user-select: none; /* Firefox */
 	-ms-user-select: none; /* IE10+/Edge */
@@ -12,41 +12,71 @@
 }
 
 .btn{
-	background-color: #0a375c;
+	background: #062137;
 	color: #f6f4f3;
 
-	height: 70px;
-
-	padding: 10px 40px 10px 25px;
-	
-	font-size: 11pt;
-	font-weight: 700;
-	line-height: 18pt;
+	border-radius: 30px 5px;
+	padding: 15px 30px;
 
 	display: flex;
-	align-items: center;
+	justify-content: space-between;
+
+	box-shadow: 0 0 5px rgba(0,0,0,.3);
+
+	font-family: 'Montserrat';
+	font-size: 18px;
+
+	transition: .4s;
 	cursor: pointer;
-
-	transition: .3s;
-	
-	border: none;
 }
+.btn h4{
+	font-weight: 600;
+}
+.btn *{
+	margin: 0;
+	line-height: 2;
+}
+.btn img{
+	width: 25px;
+	max-width: 25px;
 
-.btn svg, .btn img{
-	margin-right: 15px;
+	margin-left: 20px;
 }
 
 .btn:hover{
-	background-color: #256182;
+	background-color: #0E4D81;
 }
 
-.greyed{
+.btn.greyed{
 	background-color: #8c8c8c;
-	cursor: default;
+}
+.btn.greyed:hover{
+	transform: none;
 }
 
-.greyed:hover{
-	background-color: #8c8c8c;
+.btn-box .btn{
+	border-radius: 0;
+	box-shadow: 0 0 0 0;
+}
+.btn-box .btn:first-child{
+	border-radius: 30px 5px 0 0;
+}
+.btn-box .btn:last-child{
+	border-radius: 0 0 30px 5px;
+}
+.btn-box .btn:not(:last-child){
+	border-bottom: 2px solid #f6f4f3;
+}
+.btn-box{
+	position: fixed;
+	bottom: 5%;
+	right: 18%;
+
+	width: 100%;
+	width: fit-content;
+
+	box-shadow: 0 0 5px rgba(0,0,0,.3);
+	border-radius: 30px 5px 30px;
 }
 
 [placeholder]:empty:before {
@@ -179,6 +209,7 @@
 	display: block;
 }
 
+/* TODO: Centralizar o modal coretamente */
 .overlay{
 	width: 100vw;
 	height: 100vw;

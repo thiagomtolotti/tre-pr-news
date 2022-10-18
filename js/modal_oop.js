@@ -224,6 +224,8 @@ linkBtn.onclick = ((event)=>{
 				document.querySelector('.err-msg').style.display = "block";
 			}
 		})
+	}else{
+		new FlashMessage(flashMessages.avisoLink)
 	}
 })
 

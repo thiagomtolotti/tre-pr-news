@@ -251,7 +251,12 @@ let flashMessages = JSON.parse('{ \
         "tipo" : "erro",\
         "titulo" : "Houve um erro inesperado",\
         "texto": "Houve um erro inesperado ao exportar o HTML, favor entrar em contato com a SCV"\
-    }\
+    },\
+    "avisoLink" : { \
+        "tipo": "aviso",\
+        "titulo": "Não é possível adicionar o link", \
+        "texto" : "Não é possível adicionar o link pois não há texto selecionado" \
+    } \
 }')
 
 //BUG: CSS: Container dos modais bloqueia a edição pois 'fica na frente'
