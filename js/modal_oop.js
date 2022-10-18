@@ -9,7 +9,7 @@ const tiposModal = {
 		msg: "Adicione o Link"
 	},
 	HTML: {
-		msg: "Gerar o HTML é uma ação irreversível, tem certeza de que deseja continuar?"
+		msg: "Após exportar o HTML qualquer alteração exigirá que seja exportado novamente, você tem certeza que o material está finalizado?"
 	}
 }
 
@@ -111,8 +111,8 @@ class ConfirmModal extends Modal{
 		</div> \
 		<div class="close-btn"></div>`)
 
+		this.overlay.appendChild(this.modal)
 		document.body.appendChild(this.overlay);
-		document.body.appendChild(this.modal)
 
 		this.addEventListeners()
 		this.focusOnly()
@@ -149,8 +149,8 @@ class InputModal extends Modal{
 		</div> \
 		<div class="close-btn"></div>`)
 
-		document.body.appendChild(this.overlay);
-		document.body.appendChild(this.modal)
+		this.overlay.appendChild(this.modal)
+		document.body.appendChild(this.overlay)
 
 		this.addEventListeners()
 		this.focusOnly()

@@ -96,10 +96,6 @@
 	box-shadow: 0 0 15px rgba(0,0,0,.2);
 	
 	width: 500px;
-
-	position: fixed;
-	top: calc(50vh - 125px);
-	left: calc(50% - 250px);
 }
 
 .prompt .content{
@@ -209,13 +205,17 @@
 	display: block;
 }
 
-/* TODO: Centralizar o modal coretamente */
 .overlay{
 	width: 100vw;
 	height: 100vw;
+	width: -webkit-fill-available;
+	height: -webkit-fill-available;
 	
 	background-color: rgba(0,0,0,.2);
 	
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -368,7 +368,7 @@ body{
 
 /* Container materias */
 .outra-materia-container, .main-materia-container{
-	cursor: pointer;
+	cursor: grab;
 	
 	border-radius: 20px;
 	overflow: hidden;
@@ -379,6 +379,12 @@ body{
 }
 .outra-materia-container:hover, .main-materia-container:hover{
 	background-color: #dcd5d0;
+}
+
+.outra-materia-container.grab, .main-materia-container.grab{
+	z-index: 2;
+	scale: 1.07;
+	cursor: grabbing;
 }
 
 .outra-materia-container.show, .main-materia-container.show{

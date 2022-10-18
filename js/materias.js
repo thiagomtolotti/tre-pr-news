@@ -22,9 +22,7 @@ class Materia{
             } 
 
             mouseDown = true
-
-            this.element.style.zIndex = 2
-            this.element.style.scale = 1.07
+            this.element.classList.add('grab')
             
             //Determina a posição da materia selecionada no array de matérias
             materiaPos = Array.apply(null, document.querySelectorAll(".remove-materia")).indexOf(this.element)
@@ -38,12 +36,8 @@ class Materia{
             if(!mouseDown) return
 
             //move o elemento de acordo com o movimento
-            let currY = ev.clientY;
-
-            let deltaY = (currY - initMouseY)
-
-            this.element.style.top = deltaY + "px"
-        },1))
+            this.element.style.top = (ev.clientY - initMouseY) + "px"
+        },15))
         this.element.addEventListener("mouseup", (ev)=>{
             this.mouseOut(ev)
         })
@@ -92,8 +86,7 @@ class Materia{
     
             //reseta as variáveis
             mouseDown = false
-            this.element.style.zIndex = "1"
-            this.element.style.scale = "initial"
+            this.element.classList.remove('grab')
             this.element.style.top = "0px"
         }
     }
