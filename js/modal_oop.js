@@ -15,7 +15,6 @@ const tiposModal = {
 
 //Orientação a objetos dos modais
 //classe abstrata para os diferentes tipos de modais
-
 class Modal{
 	constructor(tipo, callback){
 		this.msg = tipo.msg
@@ -34,7 +33,7 @@ class Modal{
 		this.modal.querySelector("#send").onclick = (()=>{
 			this.callback() ? this.fechaModal() : ''
 		})
-		this.modal.querySelectorAll("button:first-child, .close-btn").forEach((el)=>{
+		this.modal.querySelectorAll(".cancel, .close-btn").forEach((el)=>{
 			el.onclick = ((ev)=>{
 				if(ev.target != el) return
 

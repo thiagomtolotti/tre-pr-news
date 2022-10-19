@@ -1,4 +1,8 @@
 /* Arquivo para os estilos relacionados ao editor */
+:root{
+	--system-default: 'montserrat', 'Roboto', 'Segoe UI', 'Helvetica', 'Arial', sans-serif;
+}
+
 [contenteditable]{
     outline: none;
     cursor: text;
@@ -12,7 +16,7 @@
 }
 
 .btn{
-	background: #062137;
+	background-color: #062137;
 	color: #f6f4f3;
 
 	border-radius: 30px 5px;
@@ -23,16 +27,16 @@
 
 	box-shadow: 0 0 5px rgba(0,0,0,.3);
 
-	font-family: 'Montserrat';
+	font-family: var(--system-default);
 	font-size: 18px;
 
-	transition: .4s;
+	transition: .4s ease-out;
 	cursor: pointer;
 }
 .btn h4{
 	font-weight: 600;
 }
-.btn *{
+.btn h4, .btn img{
 	margin: 0;
 	line-height: 2;
 }
@@ -49,6 +53,7 @@
 
 .btn.greyed{
 	background-color: #8c8c8c;
+	cursor: default;
 }
 .btn.greyed:hover{
 	transform: none;
@@ -89,7 +94,7 @@
 }
 
 .prompt{
-	font-family: 'Montserrat';
+	font-family: var(--system-default);
 
 	background-color: #f6f4f3;
 	color: #062137;
@@ -125,8 +130,8 @@
 }
 
 .prompt button{
-	font-family: 'Montserrat','Helvetica', 'Arial', sans-serif;
-	font-weight: 600;
+	font-family: var(--system-default);
+	font-weight: 500;
 	font-size: 14pt;
 	letter-spacing: .5px;
 
@@ -135,10 +140,15 @@
 	margin: auto 15px auto 0;
 
 	color: #f6f4f3;
-	background-color: #3183af;
+	background-color: #0a375c;
 	border-radius: 3px;
+	transition: .2s ease-out;
 
 	cursor: pointer;
+}
+
+.prompt button:hover{
+	background-color: #0E4D81;
 }
 
 .prompt button.cancel{
@@ -172,7 +182,7 @@
 }
 
 .prompt.input input{
-	font-family: 'Montserrat', 'Segoe UI', 'Helvetica', 'Arial', sans-serif;
+	font-family: var(--system-default);
 
 	font-size: 12pt;
 	padding: 8px 10px;
@@ -239,16 +249,9 @@ label{
 /* Flash-messages */
 .container-lvl2-flash-message{
 	position: fixed;
-	top: 0;
+	bottom: 0;
 
 	margin: 30px;
-
-	height: -webkit-fill-available;
-	height: calc(100vh - 60px);
-
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-end;
 }
 
 .flash-message{

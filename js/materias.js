@@ -52,7 +52,7 @@ class Materia{
             let finalPos
     
             //avalia se o usuário subiu ou desceu o item e então avalia os itens para baixo ou para cima dele
-            if (this.element.style.top.replace("px", "") > 0) { //MELHORIA: materia.style.top parece sensível, tentar colocar o delta
+            if (this.element.style.top.replace("px", "") > 0) {
                 for(let i = materiaPos; i < outrasMaterias.length; i++){
                     //somente verifica as matérias que não são a que foi movimentada
                     if(outrasMaterias[i] != this.element){
@@ -108,6 +108,7 @@ class Materia{
         },50))
     }
 
+    // TODO: Usar como document.debounce ou window.debounde
     debounce(func, wait, immediate){
         var timeout;
         
@@ -252,7 +253,6 @@ let flashMessages = JSON.parse('{ \
     } \
 }')
 
-//BUG: CSS: Container dos modais bloqueia a edição pois 'fica na frente'
 class FlashMessage{
     constructor(flashCard){
         this.tipo = flashCard.tipo
