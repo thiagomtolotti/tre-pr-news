@@ -22,9 +22,7 @@ class Materia{
             } 
 
             mouseDown = true
-
-            this.element.style.zIndex = 2
-            this.element.style.scale = 1.07
+            this.element.classList.add('grab')
             
             //Determina a posição da materia selecionada no array de matérias
             materiaPos = Array.apply(null, document.querySelectorAll(".remove-materia")).indexOf(this.element)
@@ -38,26 +36,23 @@ class Materia{
             if(!mouseDown) return
 
             //move o elemento de acordo com o movimento
-            let currY = ev.clientY;
-
-            let deltaY = (currY - initMouseY)
-
-            this.element.style.top = deltaY + "px"
-        },5))
+            this.element.style.top = (ev.clientY - initMouseY) + "px"
+        },6))
         this.element.addEventListener("mouseup", (ev)=>{
-            this.mouseOut()
+            this.mouseOut(ev)
         })
         this.element.addEventListener("mouseleave", (ev)=>{
-            this.mouseOut()
+            this.mouseOut(ev)
         })
 
-        this.mouseOut = ()=>{
+        this.mouseOut = (ev)=>{
+            if(!mouseDown) return
             let finalY = this.element.getBoundingClientRect().top
             let outrasMaterias = document.querySelectorAll(".remove-materia");
             let finalPos
     
             //avalia se o usuário subiu ou desceu o item e então avalia os itens para baixo ou para cima dele
-            if (this.element.style.top.replace("px", "") > 0) { //MELHORIA: materia.style.top parece sensível, tentar colocar o delta
+            if (this.element.style.top.replace("px", "") > 0) {
                 for(let i = materiaPos; i < outrasMaterias.length; i++){
                     //somente verifica as matérias que não são a que foi movimentada
                     if(outrasMaterias[i] != this.element){
@@ -91,8 +86,7 @@ class Materia{
     
             //reseta as variáveis
             mouseDown = false
-            this.element.style.zIndex = "auto"
-            this.element.style.scale = "initial"
+            this.element.classList.remove('grab')
             this.element.style.top = "0px"
         }
     }
@@ -114,6 +108,7 @@ class Materia{
         },50))
     }
 
+    // TODO: Usar como document.debounce ou window.debounde
     debounce(func, wait, immediate){
         var timeout;
         
@@ -250,10 +245,14 @@ let flashMessages = JSON.parse('{ \
         "tipo" : "erro",\
         "titulo" : "Houve um erro inesperado",\
         "texto": "Houve um erro inesperado ao exportar o HTML, favor entrar em contato com a SCV"\
-    }\
+    },\
+    "avisoLink" : { \
+        "tipo": "aviso",\
+        "titulo": "Não é possível adicionar o link", \
+        "texto" : "Não é possível adicionar o link pois não há texto selecionado" \
+    } \
 }')
 
-//BUG: CSS: Container dos modais bloqueia a edição pois 'fica na frente'
 class FlashMessage{
     constructor(flashCard){
         this.tipo = flashCard.tipo

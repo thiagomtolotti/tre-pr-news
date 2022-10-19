@@ -9,7 +9,7 @@ const tiposModal = {
 		msg: "Adicione o Link"
 	},
 	HTML: {
-		msg: "Gerar o HTML é uma ação irreversível, tem certeza de que deseja continuar?"
+		msg: "Após exportar o HTML qualquer alteração exigirá que seja exportado novamente, você tem certeza que o material está finalizado?"
 	}
 }
 
@@ -30,12 +30,19 @@ class Modal{
 	}
 
 	addEventListeners(){
-		this.modal.querySelector("#ok-btn").onclick = (()=>{
+		this.modal.querySelector("#send").onclick = (()=>{
 			this.callback() ? this.fechaModal() : ''
 		})
-		this.modal.querySelector("button:nth-child(2)").onclick = (()=>{
-			this.fechaModal();
+		this.modal.querySelectorAll(".cancel, .close-btn").forEach((el)=>{
+			el.onclick = ((ev)=>{
+				if(ev.target != el) return
+
+				this.fechaModal();
+			})
 		})
+		document.querySelector(".overlay").onclick = ()=>{
+			this.fechaModal();
+		}
 	}
 
 	fechaModal(){
@@ -45,7 +52,6 @@ class Modal{
 		Modal.isOpen = false
 	}
 
-	//BUG: no InputModal o campo de input não é ADA compliant
 	focusOnly(){
 		let focusableElements = 'button, input'
 
@@ -94,17 +100,18 @@ class ConfirmModal extends Modal{
 		this.modal.dataset.export = "false"
 
 		this.modal.insertAdjacentHTML('afterbegin', `\
-		<div> \
-			<h3>${this.titulo}</h3> \
+		<div class="content"> \
+			<h2>${this.titulo}</h2> \
 			<p>${this.msg}</p> \
 		</div> \
-		<div class="container"> \
-			<button id="ok-btn">OK</button> \
-			<button>Cancelar</button> \
-		</div>`)
+		<div class="btn-container"> \
+			<button class="cancel">Cancelar</button> \
+			<button id="send">Enviar</button> \
+		</div> \
+		<div class="close-btn"></div>`)
 
+		this.overlay.appendChild(this.modal)
 		document.body.appendChild(this.overlay);
-		document.body.appendChild(this.modal)
 
 		this.addEventListeners()
 		this.focusOnly()
@@ -124,24 +131,25 @@ class InputModal extends Modal{
 		this.overlay.classList.add("overlay");
 		this.overlay.dataset.export = "false"
 		this.modal.classList.add('prompt')
+		this.modal.classList.add('input')
 		this.modal.dataset.export = "false"
 
 		this.modal.insertAdjacentHTML('afterbegin', `\
-		<div> \
-			<h3>${this.titulo}</h3> \
+		<div class="content"> \
+			<h2>${this.titulo}</h2> \
 			<p>${this.msg}</p> \
-		</div> \
-		<div> \
 			<input type="text" id="modal-input"> \
-			<p class="err-msg hidden">Link inválido, tente novamente</p>\
+			<p class="error-msg">Link inválido, tente novamente</p>\
 		</div> \
-		<div class="container"> \
-			<button id="ok-btn">Enviar</button> \
-			<button>Cancelar</button> \
-		</div>`)
+		</div> \
+		<div class="btn-container"> \
+			<button class="cancel">Cancelar</button> \
+			<button id="send">Enviar</button> \
+		</div> \
+		<div class="close-btn"></div>`)
 
-		document.body.appendChild(this.overlay);
-		document.body.appendChild(this.modal)
+		this.overlay.appendChild(this.modal)
+		document.body.appendChild(this.overlay)
 
 		this.addEventListeners()
 		this.focusOnly()
@@ -215,6 +223,8 @@ linkBtn.onclick = ((event)=>{
 				document.querySelector('.err-msg').style.display = "block";
 			}
 		})
+	}else{
+		new FlashMessage(flashMessages.avisoLink)
 	}
 })
 
