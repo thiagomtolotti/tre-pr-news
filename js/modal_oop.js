@@ -301,28 +301,28 @@ async function geraHTML(callback){
 }
 
 //Leitor de estilos - https://stackoverflow.com/questions/42025329/how-to-get-the-applied-style-from-an-element-excluding-the-default-user-agent-s
-var proto = Element.prototype;
-var slice = Function.call.bind(Array.prototype.slice);
-var matches = Function.call.bind(proto.matchesSelector || 
+const proto = Element.prototype;
+const slice = Function.call.bind(Array.prototype.slice);
+const matches = Function.call.bind(proto.matchesSelector || 
 				proto.mozMatchesSelector || proto.webkitMatchesSelector ||
 				proto.msMatchesSelector || proto.oMatchesSelector);
 
 // Returns true if a DOM Element matches a cssRule
-var elementMatchCSSRule = function(element, cssRule) {
+const elementMatchCSSRule = function(element, cssRule) {
 	return matches(element, cssRule.selectorText);
 };
 
 // Returns true if a property is defined in a cssRule
-var propertyInCSSRule = function(prop, cssRule) {
+const propertyInCSSRule = function(prop, cssRule) {
 	return prop in cssRule.style && cssRule.style[prop] !== "";
 };
 
 // Here we get the cssRules across all the stylesheets in one array
-var cssRules = slice(document.styleSheets).reduce(function(rules, styleSheet) {
+const cssRules = slice(document.styleSheets).reduce(function(rules, styleSheet) {
 	return rules.concat(slice(styleSheet.cssRules));
 }, []);
 
-var getAppliedCss = function(elm) {
+const getAppliedCss = function(elm) {
 	// get only the css rules that matches that element
 	var elementRules = cssRules.filter(elementMatchCSSRule.bind(null, elm));
 	var rules =[];

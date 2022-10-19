@@ -26,6 +26,11 @@ function openLink(){
 	}
 }
 
+//a cada 200ms verifica se tem algum texto selecionado
+window.setInterval(function(){
+    openLink();
+}, 200);
+
 //'Plain-paste'; não aceita rich texts
 const editorEle = document.querySelector('.final');
 
