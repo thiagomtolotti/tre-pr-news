@@ -295,7 +295,6 @@ async function geraHTML(callback){
 	let bodyString = String(htmlBody).replaceAll(/<!--[\s\S]*?-->/g, '')
 
 	//coloca o HTML no clipboarddy.innerHTML);
-	console.log(htmlHead.outerHTML + bodyString)
     navigator.clipboard.writeText(htmlHead.outerHTML + bodyString)
 
 	callback()
