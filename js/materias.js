@@ -37,7 +37,7 @@ class Materia{
 
             //move o elemento de acordo com o movimento
             this.element.style.top = (ev.clientY - initMouseY) + "px"
-        },15))
+        },6))
         this.element.addEventListener("mouseup", (ev)=>{
             this.mouseOut(ev)
         })

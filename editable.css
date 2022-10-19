@@ -382,6 +382,7 @@ body{
 }
 
 .outra-materia-container.grab, .main-materia-container.grab{
+	transition: none;
 	z-index: 2;
 	scale: 1.07;
 	cursor: grabbing;
