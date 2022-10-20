@@ -10,6 +10,9 @@ const tiposModal = {
 	},
 	HTML: {
 		msg: "Após exportar o HTML qualquer alteração exigirá que seja exportado novamente, você tem certeza que o material está finalizado?"
+	},
+	deleteMateria: {
+		msg:"A matéria sendo excluída possuí conteúdo, deseja excluir mesmo assim?"
 	}
 }
 

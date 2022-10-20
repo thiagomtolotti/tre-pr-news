@@ -451,4 +451,5 @@ body{
 	height: 25px;
 
 	background-image: url('./img/close-icon.svg');
+	cursor: pointer;
 }

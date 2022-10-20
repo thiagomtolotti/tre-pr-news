@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+	
+	<style>
+		body{
+            background-color: #f6f4f3;
+
+            display: flex;
+			flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            min-height: 98vh;
+			
+            font-family: 'Montserrat','Helvetica', 'Arial', sans-serif;
+			color: #0a375c;
+        }
+		
+		body > div{
+			margin: 80px;
+		}
+	</style>
+	
+	<!-- Botões -->
+	<style>
+		.btn{
+			background: #062137;
+			color: #f6f4f3;
+
+			border-radius: 30px 5px;
+			padding: 15px 30px;
+
+			display: flex;
+
+			box-shadow: 0 0 9px rgba(6,33,55..3);
+
+			font-family: 'Montserrat Semibold';
+			font-size: 18px;
+
+			transition: .4s;
+			cursor: pointer;
+		}
+		.btn *{
+			margin: 0;
+			line-height: 2;
+		}
+		.btn img{
+			width: 25px;
+			max-width: 25px;
+
+			margin-left: 20px;
+		}
+
+		.btn:hover{
+			background-color: #0E4D81;
+		}
+
+		.btn.greyed{
+			background-color: #8c8c8c;
+		}
+		.btn.greyed:hover{
+			transform: none;
+		}
+	</style>
+	<!-- Caixa de botoes -->
+	<style>
+		.btn-box .btn{
+			border-radius: 0;
+			box-shadow: 0 0 0 0;
+		}
+		.btn-box .btn:first-child{
+			border-radius: 30px 5px 0 0;
+		}
+		.btn-box .btn:last-child{
+			border-radius: 0 0 30px 5px;
+		}
+		.btn-box .btn:not(:last-child){
+			border-bottom: 2px solid #f6f4f3;
+		}
+		.btn-box{
+			box-shadow: 0 0 9px rgba(6,33,55..3);
+			border-radius: 30px 0 30px;
+		}
+	</style>
+	<!-- Botão Terciário -->
+	<style>
+		.btn-tertiary{
+			color: #3183af;
+
+			font-family: 'Montserrat Regular';
+			font-size: 20px;
+
+			cursor: pointer;
+		}
+		.btn-tertiary h4{
+			margin: 2px auto;
+		}
+		.btn-tertiary img{
+			width: 25px;
+			margin-left: 8px;
+		}
+		.btn-tertiary div{
+			display: inline-flex;
+		}
+		.btn-tertiary::after{
+			content: '';
+			display: block;
+
+			width: 100%;
+			transform: scaleX(0);
+
+			border-bottom: 2px solid #3183af;
+			margin: 5px auto 0;
+			transition: .4s ease-out;
+		}
+
+		.btn-tertiary:hover::after{
+			transform: scaleX(1);
+		}
+	</style>
+
+	<!-- Prompt -->
+	<style>
+		.prompt{
+			background-color: #f6f4f3;
+			box-shadow: 0 0 15px rgba(0,0,0,.2);
+			
+			width: 500px;
+
+			position: relative;
+		}
+
+		.prompt .content{
+			margin: 40px;
+
+			line-height: 1.4;
+			font-weight: 500;
+
+			position: relative;
+		}
+
+		.prompt h2{
+			line-height: 1.2;
+			margin: 0;
+		}
+
+		.prompt .btn-container{
+			background-color: #ece8e6;
+			min-height: 85px;
+
+			margin: auto;
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+
+			padding: 0 20px;
+		}
+
+		.prompt button{
+            font-family: 'Montserrat','Helvetica', 'Arial', sans-serif;
+			font-weight: 600;
+			font-size: 14pt;
+			letter-spacing: .5px;
+
+			border: none;
+			padding: 10px 20px;
+			margin: auto 15px auto 0;
+
+			color: #f6f4f3;
+			background-color: #3183af;
+			border-radius: 3px;
+
+			cursor: pointer;
+		}
+
+		.prompt button.cancel{
+			background-color: transparent;
+			color: #0a375c;
+
+			font-weight: 500;
+
+			transition: .1s ease-out;
+		}
+
+		.prompt button.cancel:hover{
+			background-color: rgba(0,0,0,.1);
+		}
+
+		.prompt .close-btn{
+			position: absolute;
+
+			background-image: url('./img/close-icon.svg');
+			width: 25px;
+			height: 25px;
+
+			top: 20px;
+			right: 20px;
+
+			cursor: pointer;
+		}
+
+		.prompt.input p{
+			margin: 5px 0 30px;
+		}
+
+		.prompt.input input{
+			font-family: 'Montserrat', 'Segoe UI', 'Helvetica', 'Arial', sans-serif;
+
+			font-size: 12pt;
+			padding: 8px 10px;
+			width: calc(100% - 20px);
+
+			border-radius: 5px;
+			border: 2px solid #3183af;
+			
+			background-color: transparent;
+		}
+		.prompt.erro input{
+			border: 2px solid #ff2c48;
+		}
+
+		.prompt p.error-msg{
+			display: none;
+
+			font-size: 13px;
+			text-align: right;
+
+			color: #ff2c48;
+
+			margin: 5px 0;
+
+			position: absolute;
+			right: 0;
+		}
+
+		.prompt.erro .error-msg{
+			display: block;
+		}
+	</style>
+
+	<!-- Flash-messages -->
+	<style>
+		.flash-message{
+			background-color: #f6f4f3;
+			box-shadow: 0 0 15px rgba(0,0,0, .15);
+
+			border-radius: 5px;
+
+			display: flex;
+			overflow: hidden;
+			position: relative;
+
+			width: 500px;
+			height: 110px;
+
+			font-weight: 500;
+		}
+		.flash-message .barra-lateral{
+			width: 10px;
+			height: 1000px;
+		}
+		.flash-message .icon{
+			width: 40px;
+			height: 40px;
+			margin: auto 15px;
+
+			background-repeat: no-repeat;
+			background-position: center center;
+		}
+		.flash-message .conteudo{
+			padding-right: 20px;
+			margin: 15px 0;
+
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+		}
+		.flash-message .conteudo p, .flash-message .conteudo h4{
+			margin: 5px;
+			line-height: 1.25;
+		}
+		.flash-message .close-icon{
+			width: 25px;
+			height: 25px;
+			right: 15px;
+			top: 10px;
+
+			cursor: pointer;
+			position: absolute;
+
+			background-image: url('./img-testes/close-icon.svg');
+		}
+
+		/* Diferentes tipos de mensagens */
+		.flash-message.sucesso .barra-lateral{
+			background-color: #01d451;
+		}
+		.flash-message.sucesso .icon{
+			background-image: url("./img/sucesso-icon.svg");
+		}
+
+		.flash-message.erro .barra-lateral{
+			background-color: #ff2c48;
+		}
+		.flash-message.erro .icon{
+			background-image: url("./img/erro-icon.svg");
+		}
+		
+		.flash-message.aviso .barra-lateral{
+			background-color: #ffbb33;
+		}
+		.flash-message.aviso .icon{
+			background-image: url("./img/aviso-icon.svg");
+		}
+
+	</style>
+</head>
+<body>
+	<div class="btn">
+		<h4>Exportar HTML</h4>
+		<img src="img/html_icon.svg" alt="" srcset="">	
+	</div>
+
+	<div class="btn greyed">
+		<h4>Exportar HTML</h4>
+		<img src="img/html_icon.svg" alt="" srcset="">	
+	</div>
+
+	<div class="btn-box">
+		<div class="btn">
+			<h4>Exportar HTML</h4>
+			<img src="img/html_icon.svg" alt="" srcset="">	
+		</div>
+		<div class="btn">
+			<h4>Exportar HTML</h4>
+			<img src="img/html_icon.svg" alt="" srcset="">	
+		</div>
+	</div>
+
+	<div class="btn-tertiary">
+		<div>
+			<h4>Voltar ao início</h4>
+			<img src="img/back-icon.svg" alt="">
+		</div>
+	</div>
+
+	<div class="prompt">
+		<div class="content">
+			<h2>Confirmação</h2>
+			<p>Gerar o HTML é uma ação irreversível, tem certeza de que deseja continuar?</p>
+		</div>
+		<div class="btn-container">
+			<button class="cancel">Cancelar</button>
+			<button>Enviar</button>
+		</div>
+		<div class="close-btn"></div>
+	</div>
+
+	<div class="prompt input">
+		<div class="content">
+			<h2>Link</h2>
+			<p>Adicione o link</p>
+			<input type="text">
+		</div>
+		<div class="btn-container">
+			<button class="cancel">Cancelar</button>
+			<button id="send">Enviar</button>
+		</div>
+		<div class="close-btn"></div>
+	</div>
+
+	<div class="prompt input erro">
+		<div class="content">
+			<h2>Link</h2>
+			<p>Adicione o link</p>
+			<input type="text">
+			<p class="error-msg">Link Inválido, tente novamente</p>
+		</div>
+		<div class="btn-container">
+			<button class="cancel">Cancelar</button>
+			<button id="send">Enviar</button>
+		</div>
+		<div class="close-btn"></div>
+	</div>
+
+	<div class="flash-message sucesso">
+		<div class="barra-lateral"></div>
+		<div class="icon"></div>
+		<div class="conteudo">
+			<h4>Email de Confirmação</h4>
+			<p>Não é possível exportar o convite sem um <strong>email de confirmação.</strong></p>
+		</div>
+		<div class="close-icon"></div>
+	</div>
+	<div class="flash-message erro">
+		<div class="barra-lateral"></div>
+		<div class="icon"></div>
+		<div class="conteudo">
+			<h4>Email de Confirmação</h4>
+			<p>Não é possível exportar o convite sem um <strong>email de confirmação.</strong></p>
+		</div>
+		<div class="close-icon"></div>
+	</div>
+	<div class="flash-message aviso">
+		<div class="barra-lateral"></div>
+		<div class="icon"></div>
+		<div class="conteudo">
+			<h4>Email de Confirmação</h4>
+			<p>Não é possível exportar o convite sem um <strong>email de confirmação.</strong></p>
+		</div>
+		<div class="close-icon"></div>
+	</div>
+</body>
+</html>
