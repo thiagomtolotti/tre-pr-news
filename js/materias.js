@@ -32,7 +32,7 @@ class Materia{
 
             initMouseY = ev.clientY - initY
         })
-        this.element.addEventListener("mousemove", this.debounce((ev)=>{
+        this.element.addEventListener("mousemove", debounce((ev)=>{
             if(!mouseDown) return
 
             //move o elemento de acordo com o movimento
@@ -92,9 +92,9 @@ class Materia{
     }
 
     addRemoveBtn(){
-        let removeBtn = 
+        let removeBtn
 
-        this.element.addEventListener("mouseenter", this.debounce((ev)=>{
+        this.element.addEventListener("mouseenter", debounce((ev)=>{
             removeBtn = document.createElement("td")
             removeBtn.classList.add("remove-btn")
 
@@ -103,33 +103,10 @@ class Materia{
             removeBtn.addEventListener("click", ()=>{this.deleteMateria()})
         },50))
     
-        this.element.addEventListener("mouseleave", this.debounce((ev)=>{
+        this.element.addEventListener("mouseleave", debounce((ev)=>{
             removeBtn.remove()
         },50))
     }
-
-    // TODO: Usar como document.debounce ou window.debounde
-    debounce(func, wait, immediate){
-        var timeout;
-        
-        return function executedFunction() {
-            var context = this;
-            var args = arguments;
-        
-            var later = function() {
-                timeout = null;
-                if (!immediate) func.apply(context, args);
-            };
-        
-            var callNow = immediate && !timeout;
-        
-            clearTimeout(timeout);
-        
-            timeout = setTimeout(later, wait);
-        
-            if (callNow) func.apply(context, args);
-        };
-    };
     
     render(rendered){
         this.container.insertAdjacentElement("beforeend", this.element)
@@ -141,19 +118,59 @@ class Materia{
         rendered();
     }
 
-    //TODO: Verificar se tem conteúdo
     deleteMateria(){
-        console.log(this.element)
-        this.element.classList.remove('show')
-        this.element.addEventListener("transitionend",()=>{
-            this.element.remove();
-        })
+        let content = this.element.querySelectorAll(".titulo-materia, .texto-materia p")
+        let isEmpty =  function(){
+            for(let i = 0; i < content.length; i++){
+                if(content[i].innerHTML != ''){
+                    return false
+                }
+            }
+            return true
+        }
+        let deleteMateria = function(){
+            this.element.classList.remove('show')
+            this.element.addEventListener("transitionend",()=>{
+                this.element.remove();
+            })
+    
+            //retira o elemento do array das materias
+            this.constructor.allInstances.splice(this.constructor.allInstances.indexOf(this.element), 1)
+            new FlashMessage(flashMessages.removeMateria)
+        }.bind(this)
 
-        //retira o elemento do array das materias
-        this.constructor.allInstances.splice(this.constructor.allInstances.indexOf(this.element), 1)
-        new FlashMessage(flashMessages.removeMateria)
+        if(!isEmpty()){
+            new ConfirmModal(tiposModal.deleteMateria, ()=>{
+                deleteMateria()
+            })
+        }else{
+            deleteMateria()
+        }
+
     }
 }
+
+function debounce(func, wait, immediate){
+    var timeout;
+    
+    return function executedFunction() {
+        var context = this;
+        var args = arguments;
+    
+        var later = function() {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
+    
+        var callNow = immediate && !timeout;
+    
+        clearTimeout(timeout);
+    
+        timeout = setTimeout(later, wait);
+    
+        if (callNow) func.apply(context, args);
+    };
+};
 
 class MateriaMain extends Materia{
     constructor(){

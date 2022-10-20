@@ -1,4 +1,7 @@
 /* Arquivo para os estilos relacionados à newsletter em si */
+center{
+    background-color: #f6f4f3;
+}
 table {
     border-spacing: 0;
 }
