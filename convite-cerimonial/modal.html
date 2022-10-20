@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Convites - Cerimonial</title>
+	
+	<link rel='stylesheet' href="editable.css">
+	<script src="js/notifications.js" defer></script>
+	
+	<style>
+		.prompt .label{
+			font-size: 11pt;
+			
+			margin-top: 15px;
+			margin-bottom: 5px;
+		}
+		
+		#email{
+			width: 650px;
+			left: calc(50% - 325px);
+			top: calc(50% - 280px);
+		}
+		
+		textarea{
+			resize: none;
+		}
+		
+		.notification-container{
+			height: calc(100vh - 50px);
+			width: 33%;
+			
+			position: absolute;
+			
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-end;
+			
+			padding-bottom: 50px;
+			
+			z-index: 99;
+		}
+		
+		.notification{
+			background-color: #F50021;
+			color: #f6f4f3;
+			font-family: sans-serif;
+			
+			max-width: 450px;
+			width: 100%;
+			
+			margin: 15px auto 15px 50px;
+			border-radius: 10px;
+			
+			display: flex;
+			overflow: hidden;
+			position: relative;
+		}
+		
+		.notification .content-container{
+			padding: 0 35px;
+		}
+		
+		.notification-bar{
+			background-color: #0a375c;
+			width: 8px;
+		}
+		
+		.notification h2{
+			font-size: 1.2em;
+			margin: 20px 0 10px 0;
+		}
+		
+		.notification p{
+			margin: 0 0 20px 0;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="prompt" id="email">
+		<div>
+			<h3>Email de confirmação do convite</h3>
+			<p>Adicione o título e o corpo do texto, o destinatário padrão é <strong>scer@tre-pr.jus.br</strong></p>
+		</div>
+		<div>
+			<p class="label"><strong>Assunto</strong></p>
+			<input type="text" id="modal-text">
+			<p class = "err-msg hidden" id="err-subject">Assunto não pode estar vazio</p>
+			<p class="label"><strong>Corpo do texto</strong></p>
+			<textarea rows="10"></textarea>
+			<p class = "err-msg hidden" id="err-body">Corpo do texto não pode estar vazio</p>
+		</div>
+		<div class="container-prompt"> 
+			<button onclick="fechaModal()">Cancelar</button>
+			<button onclick="new Notification('aaaa')">Enviar</button>
+		</div>
+	</div>
+	
+	<div class="notification-container">
+		<div class="notification">
+			<div class="notification-bar"></div>
+			<div class="content-container">
+				<h2>Erro</h2>
+				<p>Não é possível exportar sem um título no convite</p>
+			</div>
+		</div>
+		<div class="notification">
+			<div class="notification-bar"></div>
+			<div class="content-container">
+				<h2>Erro</h2>
+				<p>Não é possível exportar sem um título no convite</p>
+			</div>
+		</div>
+	</div>
+</body>

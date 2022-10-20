@@ -43,8 +43,10 @@ class Modal{
 				this.fechaModal();
 			})
 		})
-		document.querySelector(".overlay").onclick = ()=>{
-			this.fechaModal();
+		document.querySelector(".overlay").onclick = (ev)=>{
+			if(ev.target === document.querySelector(".overlay")){
+				this.fechaModal();
+			}
 		}
 	}
 
@@ -233,6 +235,11 @@ linkBtn.onclick = ((event)=>{
 
 //Adiciona o modal perguntando se o usuário deseja exportar o HTML
 document.querySelector("#btn-export").onclick = (()=>{
+	
+	if(document.querySelector("#btn-export").classList.contains("greyed")){
+		return
+	}
+	
 	new ConfirmModal(tiposModal.HTML, ()=>{
 		geraHTML(()=>{
 			new FlashMessage(flashMessages.Export)

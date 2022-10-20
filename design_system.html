@@ -220,8 +220,8 @@
 			
 			background-color: transparent;
 		}
-		.prompt.erro input{
-			border: 2px solid #ff2c48;
+		.erro input, .erro textarea{
+			border: 2px solid #ff2c48 !important;
 		}
 
 		.prompt p.error-msg{
@@ -240,6 +240,40 @@
 
 		.prompt.erro .error-msg{
 			display: block;
+		}
+	</style>
+
+	<!-- Prompt email -->
+	<style>
+		.email{
+			width: 650px;
+		}
+
+		.email .content div{
+			display: flex;
+			flex-direction: column;
+		}
+
+		.email .content label{
+			font-weight: 600;
+			margin: 15px 0 8px;
+		}
+		.email .content input, .email .content textarea{
+			font-family: 'Roboto', 'Segoe UI', 'Helvetica', 'Arial', sans-serif;
+
+			background-color: transparent;
+			border: 2px solid #3183ad;
+			border-radius: 5px;
+
+			padding: 8px 10px;
+			font-size: 16px;
+
+			resize: none;
+		}
+
+		.email .content.erro .error-msg{
+			display: block;
+			position: static;
 		}
 	</style>
 
@@ -385,6 +419,34 @@
 			<button class="cancel">Cancelar</button>
 			<button id="send">Enviar</button>
 		</div>
+		<div class="close-btn"></div>
+	</div>
+
+	<div class="prompt email">
+		<div class="content">
+			<h3>Email de confirmação de presença</h3>
+			<p>Adicione o título e o corpo do texto, o destinatário padrão é <strong>cerimonial@tre-pr.jus.br</strong></p>
+		</div>
+
+		<div class="content" onclick="this.classList.add('erro')">
+			<div>
+				<label for="subject">Assunto</label>
+				<input type="text" id="subject">
+				<p class="error-msg">Campo assunto não pode estar vazio</p>
+			</div>
+
+			<div>
+				<label for="text-content">Corpo do texto</label>
+				<textarea id="text-content" rows="10"></textarea>
+				<p class="error-msg">O texto do email não pode estar vazio</p>
+			</div>
+		</div>
+
+		<div class="btn-container">
+			<button class="cancel">Cancelar</button>
+			<button id="send">Enviar</button>
+		</div>
+
 		<div class="close-btn"></div>
 	</div>
 

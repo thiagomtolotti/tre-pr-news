@@ -1,0 +1,130 @@
+body{
+    background-color: #f6f4f3;
+}
+
+.wrapper table{
+    border-spacing: 0;
+    font-family: sans-serif;
+    font-size: 17px;
+}
+
+.wrapper h1, .wrapper .button{
+    font-family: sans-serif;
+    text-align: center;
+}
+
+.wrapper h1{
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.wrapper p, .conteudo div{
+    margin: 14px auto;
+    line-height: 26px;
+}
+
+.wrapper{
+    table-layout: fixed;
+}
+
+.main{
+    max-width: 800px;
+    background-image: url("https://thiagotolotti.com/newsletter/img/bg.png");
+    background-repeat: no-repeat;
+    background-size: 800px 600px;
+    background-position: top center;
+    background-color: #f6f4f3;
+    
+    vertical-align: top;
+}
+
+.container{
+    max-width: 680px;
+    margin: 45px auto 0;
+}
+
+.left{
+    max-width: 590px;
+    margin-left: auto;
+    
+    padding: 10px;
+}
+
+.header{
+    text-align: center;
+    vertical-align: top;
+}
+
+.final.content{
+    margin-top: 25px;
+    text-align: justify;
+}
+
+.button{
+    display: inline-flex;
+    align-items: center;
+    margin: 30px auto 15px;
+    
+    font-weight: bold;
+    
+    border: 2px solid #0a375c;
+    border-radius: 50px;
+
+    color: #0a375c;
+    
+    cursor: pointer;
+    overflow: hidden;
+    height: 40px;
+}
+
+.button p{
+    margin-left: 25px;
+}
+
+.image{
+    background: #0a375c url('../img/email_icon.svg') no-repeat center;
+    background-size: 25px;
+
+    width: 50px;
+    height: 100%;
+    margin-left: 20px;
+}
+.footer{
+    text-transform:uppercase;
+    padding: 15px 60px 45px;
+    
+    text-align: center;
+    
+    margin-bottom: 45px;
+    
+    line-height: 28px;
+}
+
+.footer-container{
+    margin-left: auto;
+    margin-right: 0;
+}
+
+a{
+    cursor: pointer;
+    color:#3183af;
+    text-decoration: underline;
+}
+
+.button-container a{
+    color: #0a375c;
+    text-decoration: none;
+}
+
+.footer a{
+    font-weight: bold;
+}
+
+h1, .conteudo{
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.conteudo{
+    margin-top: 14px;
+}
