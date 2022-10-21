@@ -250,7 +250,7 @@ document.querySelector("#btn-export").onclick = (()=>{
 })
 
 
-async function geraHTML(callback){
+async function geraHTML(){
 	//pega o head do HTML a ser exportado
 	const htmlHead = await fetch('./index.html')
 		.then((response)=>{
@@ -299,15 +299,13 @@ async function geraHTML(callback){
 	});
 
 	//pega somente o body
-	htmlBody = htmlBody.querySelector('body').outerHTML
+	htmlBody = htmlBody.querySelector('body .final').outerHTML
 
 	//remove todos os comentários
 	let bodyString = String(htmlBody).replaceAll(/<!--[\s\S]*?-->/g, '')
 
 	//coloca o HTML no clipboarddy.innerHTML);
     navigator.clipboard.writeText(htmlHead.outerHTML + bodyString)
-
-	callback()
 }
 
 //Leitor de estilos - https://stackoverflow.com/questions/42025329/how-to-get-the-applied-style-from-an-element-excluding-the-default-user-agent-s
@@ -327,10 +325,8 @@ const propertyInCSSRule = function(prop, cssRule) {
 	return prop in cssRule.style && cssRule.style[prop] !== "";
 };
 
-// Here we get the cssRules across all the stylesheets in one array
-const cssRules = slice(document.styleSheets).reduce(function(rules, styleSheet) {
-	return rules.concat(slice(styleSheet.cssRules));
-}, []);
+// Here we get the cssRules across all the stylesheets in one arrays
+const cssRules = Array.from(document.querySelector("#export-css").sheet.cssRules)
 
 const getAppliedCss = function(elm) {
 	// get only the css rules that matches that element

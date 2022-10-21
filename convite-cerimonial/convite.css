@@ -37,6 +37,13 @@ body{
     
     vertical-align: top;
 }
+.convite{
+    width: 100%;
+    height: 100px;
+
+    background-image: url('https://thiagotolotti.com/newsletter/img/pattern.png');
+    mix-blend-mode: multiply;
+}
 
 .container{
     max-width: 680px;
@@ -82,7 +89,7 @@ body{
 }
 
 .image{
-    background: #0a375c url('../img/email_icon.svg') no-repeat center;
+    background: #0a375c url('https://thiagotolotti.com/newsletter/img/email_icon.svg') no-repeat center;
     background-size: 25px;
 
     width: 50px;
