@@ -1,5 +1,5 @@
 body{
-    background-color: #f6f4f3;
+    background-color: #e8e3e0;
     margin-top: 50px;
 }
 
@@ -32,4 +32,8 @@ body{
 .email .erro .error-msg{
     display: block;
     position: static;
+}
+
+.btn-box{
+    right: 8%;
 }
