@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" type="image/x-icon" href="img/favicon.svg">
+    <title>SJOR Informa</title>
+	<link rel="icon" type="image/x-icon" href="../img/favicon.svg">
+
+    <link rel="stylesheet" href="../newsletter.css" id="export-css">
+
+    <!-- ELEMENTOS PARA O EDITOR -->
+    <link rel="stylesheet" href="../editable.css">
+    <script src="../js/index.js" defer></script>
+	<script src="../js/modal_oop.js" defer></script>
+	<script src="../js/flash_messages.js" defer></script>
+    <link rel="stylesheet" href="https://use.typekit.net/yys3fld.css">
+	
+</head>
+
+<body>
+    <center class="wrapper final" style="background-color: #f6f4f3;">
+        <table class="main" width="100%">
+            <!-- CAPA -->
+            <tr>
+                <td>
+					<a href="https://www.tre-pr.jus.br/imprensa" target="_blank" style="display: inline-block; margin: 0 auto 50px">
+                    	<img src="https://thiagotolotti.com/newsletter/img/Banner.jpg" alt="" width="580" style="max-width:100%;">
+					</a>
+                </td>
+            </tr>
+
+            <!-- TÍTULO DA MATÉRIA PRINCIPAL -->
+            <tr>
+                <td>
+                    <table width="100%" style="max-width: 520px; margin: 0 auto; text-align: center">
+                        <tr>
+                            <td style="padding: 0 20px;">
+                                <p class="titulo-materia" contenteditable placeholder="Título do conteúdo"></p>
+                                <hr style="margin: 15px auto 30px;">
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            
+            <!-- CONTEÚDO DA MATÉRIA PRINCIPAL -->
+            <tr>
+                <td style="padding: 5px 0 20px">
+                    <table width="100%" style="max-width: 520px; margin: 0 auto;">
+                        <tr>
+                            <td style="padding: 0 20px 0;">
+                                <div class="texto-materia" contenteditable id="texto-zero">
+                                    <p style="margin: 0 auto 17px;" placeholder="Texto do conteúdo"></p>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <!-- FOOTER -->
+            <tr>
+                <td>
+                    <div id="footer">
+                        <table width="100%" style="text-align: center; ">
+                            <tr>
+                                <td style="padding: 35px 20px 15px;">
+                                    <a href="https://instagram.com/treparana" target="_blank" class="icon_redes"><img src="https://thiagotolotti.com/newsletter/img/Instagram.png" alt="Ícone do Instagram com link para a rede social do TRE-PR" width="30"></a>
+                                    <a href="https://pt-br.facebook.com/treparana" target="_blank" class="icon_redes" ><img src="https://thiagotolotti.com/newsletter/img/Facebook.png" alt="Ícone do Facebook com link para a rede social do TRE-PR" width="30"></a>
+                                    <a href="https://www.tiktok.com/@tre_pr" target="_blank" class="icon_redes" ><img src="https://thiagotolotti.com/newsletter/img/Tiktok.png" alt="Ícone do Tiktok com link para a rede social do TRE-PR" width="30"></a>
+                                    <a href="https://www.tre-pr.jus.br" target="_blank" class="icon_redes" ><img src="https://thiagotolotti.com/newsletter/img/Website.png" alt="Ícone com link para o website do TRE-PR" width="30"></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 20px; font-size: 16px; line-height: 24px">
+                                    <p>Divulgação: Seção de Jornalismo</p>
+                                    <p>Layout e criação: Seção de Comunicação Visual</p>
+                                    <p>Secretaria de Comunicação Social do TRE-PR</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </center>
+
+    <!-- MENU DOS BOTÕES -->
+    <div class="btn-box" data-export="false">
+        <div class="btn greyed" id="link">
+            <h4>Adicionar link</h4>
+            <img src="../img/link_icon.svg" alt="" srcset="">	
+        </div>
+        <div class="btn" id="btn-export">
+            <h4>Exportar HTML</h4>
+            <img src="../img/html_icon.svg" alt="" srcset="">	
+        </div>
+    </div>
+
+    <!-- Flash Messages -->
+    <!-- Esse container 'extra' é necessário pra permitir o 'overflow' de notificações -->
+    <div class="container-lvl2-flash-message" data-export="false">
+        <div class="flash-message-container"></div>
+    </div>
+</body>
+
+</html>
