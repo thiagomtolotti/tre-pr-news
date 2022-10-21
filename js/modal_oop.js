@@ -236,14 +236,10 @@ linkBtn.onclick = ((event)=>{
 //Adiciona o modal perguntando se o usuário deseja exportar o HTML
 document.querySelector("#btn-export").onclick = (()=>{
 	
-	if(document.querySelector("#btn-export").classList.contains("greyed")){
-		return
-	}
+	if(document.querySelector("#btn-export").classList.contains("greyed")) return
 	
 	new ConfirmModal(tiposModal.HTML, ()=>{
-		geraHTML(()=>{
-			new FlashMessage(flashMessages.Export)
-		});
+		geraHTML();
 
 		return true;
 	})
@@ -306,6 +302,8 @@ async function geraHTML(){
 
 	//coloca o HTML no clipboarddy.innerHTML);
     navigator.clipboard.writeText(htmlHead.outerHTML + bodyString)
+	
+	new FlashMessage(flashMessages.Export)
 }
 
 //Leitor de estilos - https://stackoverflow.com/questions/42025329/how-to-get-the-applied-style-from-an-element-excluding-the-default-user-agent-s

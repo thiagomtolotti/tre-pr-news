@@ -89,16 +89,14 @@ function addEmail(){
 }
 
 document.querySelector('h1').addEventListener("keypress", (e)=>{
-    if(NON_DIGITABLE_KEYS.indexOf(e.key) == -1){
-        e.preventDefault()
+    let innerText = e.target.innerText.split('')
 
-    
-        if(NON_DIGITABLE_KEYS.indexOf(e.key) == -1 && e.target.innerHTML.split('').length >= 30){
+    if(NON_DIGITABLE_KEYS.indexOf(e.key) == -1){
+        if(innerText.length >= 30){
+            e.preventDefault()    
             new FlashMessage(flashMessages.charLimit)
             return
         }
-
-        e.target.innerHTML += e.key
     }
 })
 
