@@ -4,7 +4,7 @@ body{
 
 .wrapper table{
     border-spacing: 0;
-    font-family: sans-serif;
+    font-family: 'Roboto', 'Helvetica', 'Arial',sans-serif;
     font-size: 17px;
 }
 
@@ -68,36 +68,41 @@ body{
 }
 
 .button{
-    display: inline-flex;
+    display: flex;
     align-items: center;
     margin: 30px auto 15px;
     
     font-weight: bold;
     
     border: 2px solid #0a375c;
-    border-radius: 50px;
+    border-radius: 20px;
 
     color: #0a375c;
     
     cursor: pointer;
     overflow: hidden;
-    height: 40px;
+}
+
+.button .text{
+    margin: 7px 20px;
 }
 
 .button p{
-    margin: auto 0 auto 20px;
+    margin: auto;
 }
 
 .image{
     background-color: #0a375c;
-    background-image: url('https://thiagotolotti.com/newsletter/img/email_icon.svg');
+    background-image: url('https://thiagotolotti.com/newsletter/img/email_icon.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: 25px;
 
-    width: 50px;
-    height: 100%;
-    margin-left: 20px;
+    height: 40px;
+    border-radius: 10px 0 0 10px;
+
+    min-width: 50px;
+    margin: auto;
 }
 .footer{
     text-transform:uppercase;
