@@ -1,0 +1,39 @@
+body{
+    background-color: #e8e3e0;
+    margin-top: 50px;
+}
+
+.email{
+    width: 650px;
+}
+
+.email .content div{
+    display: flex;
+    flex-direction: column;
+}
+
+.email .content label{
+    font-weight: 600;
+    margin: 15px 0 8px;
+}
+.email .content input, .email .content textarea{
+    font-family: 'Roboto', 'Segoe UI', 'Helvetica', 'Arial', sans-serif;
+
+    background-color: transparent;
+    border: 2px solid #3183ad;
+    border-radius: 5px;
+
+    padding: 8px 10px;
+    font-size: 16px;
+
+    resize: none;
+}
+
+.email .erro .error-msg{
+    display: block;
+    position: static;
+}
+
+.btn-box{
+    right: 8%;
+}

@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" type="image/x-icon" href="https://thiagotolotti.com/newsletter/img/Brasao.png">
+    <title>Gerador de Convites - Cerimonial</title>
+
+	
+	<!-- ELEMENTOS PARA O EDITOR -->
+    <link rel="stylesheet" href="../editable.css?v=1.1">
+	<script src="../js/index.js" defer></script>
+	<script src="../js/modal_oop.js" defer></script>
+	<script src="../js/flash_messages.js" defer></script>
+	<script src="js/cerimonial.js" defer></script>
+    <link rel="stylesheet" href="https://use.typekit.net/yys3fld.css">
+	
+	<link rel="stylesheet" href="convite.css?v=1.1"  id="export-css">
+	<link rel="stylesheet" href="convite_editor.css?v=1.1">
+
+</head>
+<body>
+	
+	<center class="wrapper final">
+	<div class="main">
+	<table class="convite" width="100%">
+	<tr><td>
+		<table class="container" width="100%">
+			<tr><td>
+			<table class="left">
+				<tr><td class="header">
+					<img src="https://thiagotolotti.com/newsletter/img/Brasao.png" width="85px">
+				</td></tr>
+				<tr><td>
+					<table class="content">
+						<tr><td>
+							<p id="chamado">O Presidente do Tribunal Regional Eleitoral do Paraná, <strong>Desembargador Wellington Emanuel Coimbra de Moura</strong>, tem a honra de convidar Vossa Excelência para</p>
+						</td></tr>
+						<tr><td>
+							<h1 contenteditable style="max-width: 100%" placeholder="Nome do evento"></h1>	
+						</td></tr>
+						<tr><td>
+							<div contenteditable class="conteudo" placeholder="Texto do conteúdo do convite">
+								<p placeholder="Texto do conteúdo do convite"></p>
+							</div>
+						</td></tr>
+					</table>
+				</td></tr>
+				<tr><td>
+					<table style="margin: auto; padding: 0 30px;" class="button-container">
+					<tr><td>
+						<a class="link-mailto" style="color: #f6f4f3;">
+							<div class="button">
+								<div class="text">
+									<p>Clique aqui para confirmar presença</p>
+								</div>
+								<div class="image"></div>
+							</div>
+						</a>
+					</td></tr>
+					</table>
+				</td></tr>
+			</table>
+			</td></tr>
+		</table>
+		
+		<tr><td class="footer">
+			<table class="footer-container"><tr><td>
+				<a class="link-mailto">cerimonial@tre-pr.jus.br</a> | <a href="tel:413330-8972">(41) 3330-8972</a>
+			</td></tr></table>
+		</td></tr>
+	</td></tr>
+	</table>
+	</div>
+	</center>
+	
+	<!-- MENU DOS BOTÕES -->
+    <div class="btn-box">
+		<div class="btn greyed" id="link">
+            <h4>Inserir link</h4>
+            <img src="../img/link_icon.svg" alt="" srcset="">	
+        </div>
+		<div class="btn" onclick="addEmail()">
+            <h4>Inserir email<br>de confirmação</h4>
+            <img src="../img/email_icon.svg" alt="" srcset="">	
+        </div>
+		<div class="btn greyed" id="btn-export">
+            <h4>Exportar HTML</h4>
+            <img src="../img/html_icon.svg" alt="" srcset="">	
+        </div>
+	</div>
+	
+	<!-- Flash Messages -->
+    <!-- Esse container 'extra' é necessário pra permitir o 'overflow' de notificações -->
+    <div class="container-lvl2-flash-message" data-export="false">
+        <div class="flash-message-container"></div>
+    </div>
+	
+</body>
+</html>
+
+<!-- TODO -->
+<!-- 
+	- Feature: 'Imprimir' gera um pdf do convite
+ -->
+ 

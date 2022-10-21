@@ -1,0 +1,145 @@
+center{
+    background-color: #e8e3e0;
+}
+
+.wrapper table{
+    border-spacing: 0;
+    font-family: 'Roboto', 'Helvetica', 'Arial',sans-serif;
+    font-size: 17px;
+}
+
+.wrapper h1, .wrapper .button{
+    font-family: sans-serif;
+    text-align: center;
+}
+
+.wrapper h1{
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.wrapper p, .conteudo div{
+    margin: 14px auto;
+    line-height: 26px;
+}
+
+.wrapper{
+    table-layout: fixed;
+}
+
+.main{
+    max-width: 800px;
+    background-image: url("https://thiagotolotti.com/newsletter/img/bg.png");
+    background-repeat: no-repeat;
+    background-size: 800px 600px;
+    background-position: top center;
+    background-color: #f6f4f3;
+    
+    vertical-align: top;
+}
+.convite{
+    width: 100%;
+    height: 100px;
+
+    background-image: url('https://thiagotolotti.com/newsletter/img/pattern.png');
+    mix-blend-mode: multiply;
+}
+
+.container{
+    max-width: 680px;
+    margin: 45px auto 0;
+}
+
+.left{
+    max-width: 590px;
+    margin-left: auto;
+    
+    padding: 10px;
+}
+
+.header{
+    text-align: center;
+    vertical-align: top;
+}
+
+.final.content{
+    margin-top: 25px;
+    text-align: justify;
+}
+
+.button{
+    display: flex;
+    align-items: center;
+    margin: 30px auto 15px;
+    
+    font-weight: bold;
+    
+    border: 2px solid #0a375c;
+    border-radius: 20px;
+
+    color: #0a375c;
+    
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.button .text{
+    margin: 7px 20px;
+}
+
+.button p{
+    margin: auto;
+}
+
+.image{
+    background-color: #0a375c;
+    background-image: url('https://thiagotolotti.com/newsletter/img/email_icon.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 25px;
+
+    height: 40px;
+    border-radius: 10px 0 0 10px;
+
+    min-width: 50px;
+    margin: auto;
+}
+.footer{
+    text-transform:uppercase;
+    padding: 15px 60px 45px;
+    
+    text-align: center;
+    
+    margin-bottom: 45px;
+    
+    line-height: 28px;
+}
+
+.footer-container{
+    margin-left: auto;
+    margin-right: 0;
+}
+
+a{
+    cursor: pointer;
+    color:#3183af;
+    text-decoration: underline;
+}
+
+.button-container a{
+    color: #0a375c;
+    text-decoration: none;
+}
+
+.footer a{
+    font-weight: bold;
+}
+
+h1, .conteudo{
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.conteudo{
+    margin-top: 14px;
+}

@@ -37,8 +37,8 @@
 	font-weight: 600;
 }
 .btn h4, .btn img{
-	margin: 0;
-	line-height: 2;
+	margin: 5px 0;
+	line-height: 1.3;
 }
 .btn img{
 	width: 25px;
@@ -195,8 +195,8 @@
 	
 	background-color: transparent;
 }
-.prompt.erro input{
-	border: 2px solid #ff2c48;
+.erro input, .erro textarea{
+	border: 2px solid #ff2c48 !important;
 }
 
 .prompt p.error-msg{
