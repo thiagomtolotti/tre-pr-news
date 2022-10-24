@@ -41,6 +41,11 @@ let flashMessages = JSON.parse('{ \
         "titulo": "Não é possível adicionar o link", \
         "texto" : "Não é possível adicionar o link pois não há texto selecionado" \
     }, \
+    "sucessoLink" : { \
+        "tipo": "sucesso",\
+        "titulo": "Link adicionado com sucesso", \
+        "texto" : "O link foi adicionado com sucesso" \
+    }, \
     "charLimit" : { \
         "tipo": "erro",\
         "titulo": "Limite de caracteres",\
