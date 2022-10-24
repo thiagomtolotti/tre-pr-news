@@ -8,6 +8,8 @@ document.querySelector("#link-informativo").onclick = (()=>{
         if(link.startsWith("https://www.tre-pr.jus.br") || link.startsWith("www.tre-pr.jus.br") || link.startsWith("tre-pr.jus.br")){
             btnInformativo.href = link
             new FlashMessage(flashMessages.sucessoLink)
+
+            document.querySelector("#btn-export").classList.remove("greyed")
             return true
         }else{
             document.querySelector('.prompt').classList.add('erro');
