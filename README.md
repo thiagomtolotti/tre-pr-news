@@ -5,3 +5,4 @@ Repositório para o sistema de geração de newsletters da Seção de Jornalismo
 - Minificar imagens
 - Botar no ar
 - Testar
+- Merge
