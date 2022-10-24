@@ -12,53 +12,6 @@ img {
     border: 0;
 }
 
-.link-mailto{
-    display: flex;
-    justify-content: center;
-
-    color: #f6f4f3;
-
-    user-select: none;
-    margin: 60px auto;
-}
-
-.button{
-    display: flex;
-    align-items: center;
-    
-    font-weight: bold;
-    
-    border: 2px solid #0a375c;
-    border-radius: 20px;
-
-    color: #0a375c;
-    
-    cursor: pointer;
-    overflow: hidden;
-
-    user-select: none;
-}
-
-.button .text{
-    margin: 7px 20px;
-}
-
-.button p{
-    margin: auto;
-}
-
-.image{
-    background-color: #0a375c;
-    background-image: url('https://thiagotolotti.com/newsletter/img/document-icon.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 25px;
-
-    height: 40px;
-
-    min-width: 50px;
-}
-
 .wrapper{
     width: 100%;
     table-layout: fixed;
@@ -110,6 +63,46 @@ a{
     color: #3183af;
     text-decoration: underline;
 }
+
+.link-mailto{
+    text-decoration: none;
+}
+
+.button{
+    display: flex;
+    
+    font-size: 16px;
+    font-weight: bold;
+    
+    border: 2px solid #0a375c;
+    border-radius: 20px;
+
+    color: #0a375c;
+    
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.button .text{
+    margin: auto 20px;
+}
+
+.button p{
+    margin: auto;
+}
+
+.image{
+    background-color: #0a375c;
+    background-image: url('https://thiagotolotti.com/newsletter/img/document-icon.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 25px;
+
+    height: 40px;
+
+    min-width: 50px;
+}
+
 
 .titulo-materia.outro{
     font-size: 22px;
